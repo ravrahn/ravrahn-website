@@ -1,0 +1,1225 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSESoc</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="{% static "css/foundation.css" %}" />
+    <style>
+        /* Header */
+
+        .photo {
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-image: url({% static "img/csesoc.jpg" %});
+        }
+
+        #subtitle {
+            position: relative;
+            top: 0;
+            padding-top: 8.25rem;
+            padding-left: 1.5rem;
+            padding-bottom: 1rem;
+            font-size: 13.5pt;
+            font-family: "Roboto Condensed";
+            z-index: 3;
+        }
+
+        .feature {
+            height: 16rem;
+        }
+
+        .scroller {
+            width: 100%;
+            height: 4rem;
+            margin-bottom: 2.5rem;
+        }
+
+        h1 {
+            font-size: 18pt;
+            font-family: "Roboto";
+            font-weight: 100;
+        }
+
+        #title {
+            position: fixed;
+            overflow: visible;
+            top: 0;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-bottom: 0.5rem;
+            margin-top: 0.75rem;
+            z-index: 2;
+            border-bottom-right-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+        }
+
+        #title:before {
+            content: "";
+            position: absolute;
+            height: 20%; width: 20%;
+            background-size: cover;
+            z-index: -1; /* Keep the background behind the content */
+            
+            /* don't forget to use the prefixes you need */
+            -webkit-transform: scale(5);
+            -webkit-transform-origin: top left;
+            -webkit-filter: blur(2px);
+        }
+
+        #buttons {
+            float: right;
+            margin-top: -10rem;
+        }
+
+        #buttons div {
+            padding-top: 1.25rem;
+            padding-left: 0.5rem;
+            height: 3.5rem;
+            width: 6rem;
+            margin-top: 0.5rem;
+            background: rgba(255,255,255,0.75);
+            font-family: "Roboto Condensed";
+            border-bottom-left-radius: 0.2rem;
+            border-top-left-radius: 0.2rem;
+            z-index: 100;
+        }
+
+        #navigation {
+            height: 4rem;
+            padding-left: 10rem;
+            background-color: rgba(255,255,255,0.75);
+
+        }
+
+        .nav-grid {
+            height: 4rem;
+            width: 100%;
+            border-spacing:0px;
+            word-wrap: break-word;
+        }
+
+        .nav-grid li {
+            padding: 0;
+        }
+
+        .menu-item {
+            margin-left: 0.75rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.84rem;
+            font-family: "Roboto Condensed";
+            font-weight: 400;
+            line-height: 1rem;
+            float: left;
+        }
+
+        .menu-item-container {
+            height: 4rem;
+        }
+        .menu-item-container:hover {
+            background-color: rgba(255,255,255,0.4);
+        }
+        .menu-link {
+            text-decoration: none;
+            color: #000;
+        }
+        .menu-link:hover {
+            color: #000;
+        }
+
+        ul.dropdown {
+            position: relative;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul.dropdown li, .ham-submenu li {
+            font-family: "Roboto Condensed";
+            font-weight: 300;
+            float: left;
+            min-width: 7.75rem;
+        }
+
+        ul.dropdown li a {
+            display: block;
+        }
+
+        ul.dropdown li.hover,
+        ul.dropdown li:hover {
+            position: relative;
+        }
+
+        .nav-dropdown { 
+            width: 100%;
+            min-width: 11rem;
+            visibility: hidden;
+            background-color: white;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            list-style: none;
+            margin-left: 0;
+            -webkit-box-shadow: 0 0 0.5rem rgba(0,0,0,0.5);
+            box-shadow: 0 0 0.5rem rgba(0,0,0,0.5);
+        }
+
+        ul.dropdown ul li {
+            float: none;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            /*background: white;*/
+            text-decoration: none;
+        }
+
+        ul.dropdown ul li:hover {
+            background: #EEE;
+        }
+
+        ul.dropdown ul li a {
+            width: 100%;
+            display: inline-block;
+            color: black;
+        }
+
+        #nav-wrapper {
+            float: left;
+        }
+
+        #social-links {
+            float: right;
+            padding-right: 0.75rem;
+            padding-top: 0.15rem;
+        }
+
+
+        .social-link {
+            font-size: 10.5pt;
+            width: 6rem;
+            color: white;
+            margin-top: 0.25rem;
+            border-radius: 0.2rem;
+            font-family: "Roboto Condensed";
+        }
+
+        .social-wrapper {
+            border-radius: 0.2rem;
+        }
+
+        .social-badge {
+            height: 1.2rem;
+            margin-top: -0.125rem;
+            margin-bottom: -0.125rem;
+            float: left;
+        }
+
+        .social-badge-fb {
+            height: 1rem;
+            margin-left: 0.05rem;
+            float: left;
+        }
+
+        .social-link .social-wrapper {
+            padding: 0.25rem;
+        }
+
+        .social-link .social-wrapper div {
+            text-align: center;
+        }
+
+        .facebook {
+            background-color: #3B5998;
+        }
+
+        .facebook:hover .social-wrapper {
+            background-color: rgba(255,255,255,0.25);
+        }
+
+        .google {
+            color: #dd4b39;
+            background-color: white;
+        }
+
+        .google:hover .social-wrapper {
+            background-color: rgba(211,75,57,0.25);
+        }
+
+        #nav-padding {
+            height: 6.5rem;
+        }
+
+        /* Small Header */
+
+        #hamburger {
+            float: right;
+            cursor: pointer;
+            margin-top: 0.4rem;
+            margin-right: 0.5rem;
+            padding-right: 0.7em;
+            padding-left: 0.7em;
+            padding-top: 0.15em;
+            padding-bottom: 0.65em;
+            border-radius: 0.2rem;
+            /*background-color: rgba(255,255,255,0.6);*/
+        }
+
+        #hamburger:hover {
+            background-color: rgba(255,255,255,0.6);
+        }
+
+        #hamburger:hover .slice {
+            background-color: white;
+        }
+
+        .slice {
+            background-color: rgba(255,255,255,0.75);
+            width: 1.875rem;
+            height: 0.3125rem;
+            margin-top: 0.5em;
+            border-radius: 0.2em;
+        }
+
+        #hamburger ul {
+            max-width: 13rem;
+            right: 0;
+            left: auto;
+            overflow: scroll;
+        }
+
+        #hamburger ul li {
+            float: none;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            background: white;
+            text-decoration: none;
+        }
+
+        #hamburger ul li:hover {
+            background: #EEE;
+        }
+
+        #hamburger ul li a {
+            width: 100%;
+            display: inline-block;
+            color: black;
+        }
+
+        .ham-submenu {
+            display: none;
+        }
+
+        .ham-submenu li {
+            background: inherit !important; 
+        }
+
+        .ham-submenu li:hover {
+            background: white !important;
+        }
+
+        .ham-small-only {
+            display: none;
+        }
+
+        .ham-social-links {
+            padding-right: 0.3rem !important;
+            padding-top: 0.25rem !important;
+            padding-left: 0.3rem;
+            padding-bottom: 0.4rem;
+            float: none !important;
+            background-color: white;
+        }
+
+        .ham-social-links .google {
+            border: 1px solid #EEE;
+        }
+
+        .ham-social-link {
+            height: 1.5rem;
+        }
+
+        .ham-social-link .social-wrapper {
+            height: 1.5rem;
+        }
+
+        .ham-social-link .social-wrapper div {
+            margin-top: -0.215rem;
+        }
+
+        /* Header Media Queries */
+
+        @media (min-width: 770px) { /* Large */
+            .nav-small {
+                display: none;
+            }
+
+        }
+
+        @media (max-width: 770px) { /* Small */
+            .nav-large {
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) { /* Mobile */
+            #title {
+                margin-top: 0.15rem;
+                font-size: 14pt;
+            }
+            #navigation {
+                height: 2.5rem !important;
+            }
+            .nav-grid {
+                height: 2.5rem !important;
+            }
+            .scroller {
+                height: 2.5rem !important;
+            }
+            #nav-padding {
+                height: 3.5rem !important;
+            }
+
+            ul.dropdown li {
+                height: 2.5rem;
+            }
+            .menu-item-container {
+                height: 2.5rem;
+            }
+            .menu-item {
+                margin-top: 0.75rem;
+            }
+            #hamburger {
+                height: 2.5rem;
+                font-size: 0.625rem;
+                margin: 0 0 0 0 !important;
+                padding-right: 0.5em;
+                padding-left: 0.6em;
+                padding-top: 0.3em;
+                padding-bottom: 0.8em;
+                border-radius: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-small-list {
+                display: none;
+            }
+            .ham-small-only {
+                display: block;
+            }
+        }
+
+
+
+        /* Content */
+
+        #content {
+            max-width: 64rem;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 4rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            float: middle;
+        }
+
+        h6 {
+            font-family: "Roboto Condensed";
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: 18pt;
+            font-family: "Roboto Condensed";
+            font-weight: 300;
+        }
+
+        p {
+            font-family: "Roboto";
+            font-weight: 300;
+        }
+
+        strong, b {
+            font-weight: 400;
+        }
+
+        .news-card ul li {
+            font-family: "Roboto";
+            font-weight: 300;
+        }
+
+        .news-card {
+            padding-top: 1.5rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-bottom: 1.5rem;
+            border: 1px solid #EEE;
+            background-color: #FAFAFA;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        /* Category colour classes */
+
+        .news {
+            border-top: 0.25em solid #FFA400;
+        }
+
+        .social {
+            border-top: 0.25em solid #4D90F0;
+        }
+
+        .careers {
+            border-top: 0.25em solid #00BD39;
+        }
+
+        .tech {
+            border-top: 0.25em solid #F04D4D;
+        }
+
+        .beta {
+            border-top: 0.25em solid #9702A7;
+        }
+
+
+
+        #categories {
+            float: left;
+        }
+
+        @media (max-width: 1156px) {
+            #categories {
+                float: center;
+            }
+
+            #categories div {
+                width: auto !important;
+                float: right;
+            }
+
+            .category {
+                float: right;
+                border-radius: 0.2rem !important;
+                margin-right: 0.25rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            #categories {
+                margin-bottom: 1.8rem;
+            }
+        }
+
+        #categories h3 {
+            font-size: 1rem;
+            font-family: "Roboto Condensed";
+            font-weight: 400;
+            text-align: right;
+            padding-left: 0.5rem;
+            margin: 0;
+        }
+
+        #categories div {
+            float: left;
+            width: 4rem;
+        }
+
+        .category {
+            padding: 0.25rem;
+            padding-right: 0.5rem;
+            margin-top: 0.25rem;
+            font-size: 0.9rem;
+            font-family: "Roboto Condensed";
+            color: white;
+            width: 4rem;
+            text-align: right;
+            border-bottom-right-radius: 0.2rem;
+            border-top-right-radius: 0.2rem;
+        }
+
+        #news {
+            background-color: rgba(255,164,0,0.75);
+        }
+
+        #social {
+            background-color: rgba(77,144,240,0.75);
+        }
+
+        #careers {
+            background-color: rgba(0,189,57,0.75);
+        }
+
+        #tech {
+            background-color: rgba(240,77,77,0.75);
+        }
+
+        #beta {
+            background-color: rgba(151,2,167,0.75);
+        }
+
+
+        #news:hover {
+            background-color: #FFA400;
+        }
+
+        #social:hover {
+            background-color: #4D90F0;
+        }
+
+        #careers:hover {
+            background-color: #00BD39;
+        }
+
+        #tech:hover {
+            background-color: #F04D4D;
+        }
+
+        #beta:hover {
+            background-color: #9702A7;
+        }
+
+
+        /* Footer */
+
+        #footer {
+            height: 4rem;
+            background-color: rgba(255,255,255,0.75);
+        }
+
+        #footer span {
+            padding-top: 1.5rem;
+            padding-left: 2rem;
+            float: left;
+            font-family: "Roboto Condensed";
+        }
+
+        .footer-photo {
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position: bottom 3rem;
+            height: 4rem;
+            background-image: url({% static "img/csesoc.jpg" %});
+        }
+
+        #sponsors {
+            float: right;
+            padding: 0.5rem;
+        }
+
+        #sponsors img {
+            height: 3rem;
+            padding-right: 1rem;
+        }
+    </style>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+
+    <script src="{% static "js/vendor/modernizr.js" %}"></script>
+
+</head>
+<body>
+
+
+
+    <!-- HEADER -->
+
+    <div class="feature photo show-for-medium-up">
+        <div id="subtitle">
+            UNSW Computer Science and Engineering Society
+        </div>
+        <div id="buttons">
+            <div>&beta;eta</div>
+            <div>Comp Club</div>
+        </div>
+    </div>
+
+
+
+    <a href="#csesoc">
+        <div id="title">
+            <div>
+                <h1 id="page-heading">CSESoc</h1>
+            </div>
+        </div>
+    </a>
+
+    <div id="navbar"> 
+        <div id="scroller-anchor"></div> 
+        <div class="scroller photo"> 
+            <div id="navigation">
+                <div class="nav-large">
+                    <div id="nav-wrapper">
+                        <ul class="nav-grid dropdown">
+                            <li>
+                                <a href="#teams" class="menu-link">
+                                    <div class="menu-item-container">
+                                        <span class="menu-item">Teams</span>
+                                    </div>
+                                </a>
+                                <ul class="nav-dropdown">
+                                  <li><a href="#">Beta</a></li>
+                                  <li><a href="#">Dev</a></li>
+                                  <li><a href="#">Comp Club</a></li>
+                                  <li><a href="#">Publicity</a></li>
+                                  <li><a href="#">Social</a></li>
+                                  <li><a href="#">Tech</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#fun-stuff" class="menu-link">
+                                    <div class="menu-item-container">
+                                        <span class="menu-item">Fun Stuff</span>
+                                    </div>
+                                </a>
+                                <ul class="nav-dropdown">
+                                  <li><a href="#">Bling</a></li>
+                                  <li><a href="#">Games</a></li>
+                                  <li><a href="#">Lab0</a></li>
+                                  <li><a href="#">Calendar</a></li>
+                                  <li><a href="#">Timetable Importer</a></li>
+                                  <li><a href="#">Soctail</a></li>
+                                  <li><a href="#">Music</a></li>
+                                  <li><a href="#">Murder</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#sponsors" class="menu-link">
+                                    <div class="menu-item-container">
+                                        <span class="menu-item">Sponsors</span>
+                                    </div>
+                                </a>
+                                <ul class="nav-dropdown">
+                                  <li><a href="#">Macquarie Group</a></li>
+                                  <li><a href="#">Deloitte</a></li>
+                                  <li><a href="#">Become A Sponsor</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#about-csesoc" class="menu-link">
+                                    <div class="menu-item-container">
+                                        <span class="menu-item">About CSESoc</span>
+                                    </div>
+                                </a>
+                                <ul class="nav-dropdown">
+                                  <li><a href="#">History</a></li>
+                                  <li><a href="#">Constitution</a></li>
+                                  <li><a href="#">Exec and Heads</a></li>
+                                  <li><a href="#">FAQ</a></li>
+                                  <li><a href="#">Contact Us</a></li>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="social-links" class="clearfix">
+                        <a href="https://www.facebook.com/csesoc">
+                            <div class="facebook social-link">
+                                <div class="social-wrapper">
+                                    <img src="{% static "img/fbook.png" %}" class="social-badge-fb"></img>
+                                    <div class="clearfix">Facebook</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://plus.google.com/101220554982256575482">
+                            <div class="google social-link">
+                                <div class="social-wrapper">
+                                    <img src="{% static "img/gplus.png" %}" class="social-badge gp"></img>
+                                    <div class="clearfix">Google</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="nav-small">
+                    <div id="hamburger" class="dropdown clearfix">
+                        <div class="slice"></div>
+                        <div class="slice"></div>
+                        <div class="slice"></div>
+                        <ul class="nav-dropdown ham-menu">
+                            <li class="ham-small-only">
+                                <a href="#comp-club" class="menu-link">
+                                    <span class="menu-item">Comp Club</span>
+                                </a>
+                            </li>
+                            <li class="ham-small-only">
+                                <a href="#beta" class="menu-link">
+                                    <span class="menu-item">&beta;eta</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#teams" class="menu-link">
+                                    <span class="menu-item">Teams</span>
+                                </a>
+                                <ul class="ham-submenu">
+                                  <li><a href="#">Beta</a></li>
+                                  <li><a href="#">Dev</a></li>
+                                  <li><a href="#">Comp Club</a></li>
+                                  <li><a href="#">Publicity</a></li>
+                                  <li><a href="#">Social</a></li>
+                                  <li><a href="#">Tech</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#fun-stuff" class="menu-link">
+                                    <span class="menu-item">Fun Stuff</span>
+                                </a>
+                                <ul class="ham-submenu">
+                                  <li><a href="#">Bling</a></li>
+                                  <li><a href="#">Games</a></li>
+                                  <li><a href="#">Lab0</a></li>
+                                  <li><a href="#">Calendar</a></li>
+                                  <li><a href="#">Timetable Importer</a></li>
+                                  <li><a href="#">Soctail</a></li>
+                                  <li><a href="#">Music</a></li>
+                                  <li><a href="#">Murder</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#sponsors" class="menu-link">
+                                    <span class="menu-item">Sponsors</span>
+                                </a>
+                                <ul class="ham-submenu">
+                                  <li><a href="#">Macquarie Group</a></li>
+                                  <li><a href="#">Deloitte</a></li>
+                                  <li><a href="#">Become A Sponsor</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#about-csesoc" class="menu-link">
+                                    <span class="menu-item">About CSESoc</span>
+                                </a>
+                                <ul class="ham-submenu">
+                                  <li><a href="#">History</a></li>
+                                  <li><a href="#">Constitution</a></li>
+                                  <li><a href="#">Exec and Heads</a></li>
+                                  <li><a href="#">FAQ</a></li>
+                                  <li><a href="#">Contact Us</a></li>
+                                </ul>
+                            </li>
+                            <div id="social-links" class="clearfix ham-social-links">
+                                <div style="float: left;">
+                                    <a href="https://www.facebook.com/csesoc">
+                                        <div class="facebook social-link ham-social-link">
+                                            <div class="social-wrapper">
+                                                <img src="img/fbook.png" class="social-badge-fb"></img>
+                                                <div class="clearfix">Facebook</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div style="float: right;">
+                                    <a href="https://plus.google.com/101220554982256575482">
+                                        <div class="google social-link ham-social-link">
+                                            <div class="social-wrapper">
+                                                <img src="img/gplus.png" class="social-badge gp"></img>
+                                                <div class="clearfix">Google</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="nav-padding"></div>
+
+
+
+
+
+
+
+    <!-- CONTENT -->
+
+    <div id="categories">
+        <h3>Categories</h3>
+        <div>
+            <div class="category" id="news">News</div>
+            <div class="category" id="social">Social</div>
+            <div class="category" id="careers">Careers</div>
+            <div class="category" id="tech">Tech</div>
+            <div class="category" id="beta">Beta</div>
+        </div>
+    </div>
+
+
+    <div id="content">
+        <h6>14 December 2013</h6>
+        <div class="news-card news">
+            <h2>2014 First Year Camp Leader Application</h2>
+            <p>
+                Are you interested in being a camp leader for CSESoc First Year Camp 2014? We are looking for enthusiastic and responsible students to help the new students have a great time at camp and make lots of new friends!
+            </p>
+            <p>
+                First year camp will be held Friday 21st - Sunday 23rd March (end of Week 3 of Semester 1). 
+            </p>
+            <p>
+                Apply here before 11:59:59pm on Tuesday December 31, 2013. You must be a CSE plan involved student to apply.
+            </p>
+        </div>
+
+        <h6>24 November 2013</h6>
+        <div class="news-card news">
+            <h2>CSESoc Heads Team 2014</h2>
+            <p>Congratulations to the new heads for 2014!
+                <ul>
+                    <li><strong>Beta head</strong>: Angelo Tamayo</li>
+                    <li><strong>Dev heads</strong>: John Wiseheart and Vincent Tran</li>
+                    <li><strong>High School heads</strong>: Mrinal Chakravarthy and Vanessa Ung</li>
+                    <li><strong>Publicity head</strong>: Davina Adisusila</li>
+                    <li><strong>Social heads</strong>: Lucas Pickup and Oliver Tan</li>
+                    <li><strong>Tech head</strong>: Karl Krauth</li>
+                </ul>
+            </p>
+        </div>
+
+        <h6>17 November 2013</h6>
+        <div class="news-card news">
+            <h2>Heads Application Reminder</h2>
+            <p>Applications for 2014 CSESoc Heads positions are still open! The Heads positions you can apply for are:</p>
+            <p><ul>
+                <li>Beta head</li>
+                <li>Dev head</li>
+                <li>High School head</li>
+                <li>Publicity head</li>
+                <li>Social head</li>
+                <li>Tech head</li>
+            </ul></p>
+            <p>To see more information about each team <a href="http://goo.gl/wElzb">click here</a>.</p>
+            <p>Send in an email to csesoc@cse.unsw.edu.au. In your application, make sure you consider the following:</p>
+            <p><ul>
+                <li>Mention any experience you have that might help you with the position,</li>
+                <li>Why you want to get involved in CSESoc,</li>
+                <li>What you think the job entails, and</li>
+                <li>What you would like to do if you got the role. </li>
+            </ul></p>
+            <p>Applications close <strong>11:59pm 21st November</strong> (this Thursday!).</p>
+        </div>
+        <div class="news-card careers">
+            <h2>Microsoft Job Application</h2>
+            <p>Microsoft will be back on campus in March 2014! Resumes are already being reviewed for future events so make sure you send your CVs now. It never hurts to get a head start :)</p>
+            <p>To find out more information <a href="http://goo.gl/MAa6n8">click here</a>.</p>
+        </div>
+        <h6>6 November 2013</h6>
+        <div class="news-card news">
+            <h2>Heads Nominations Open!</h2>
+            <p>Applications for 2014 CSESoc Heads positions are now open! The Heads positions you can apply for are:</p>
+            <p><ul>
+                <li>Beta Head</li>
+                <li>Dev Head</li>
+                <li>High School Head</li>
+                <li>Publicity Head</li>
+                <li>Social Head</li>
+                <li>Tech Head</li>
+            </ul></p>
+            <p>To see more information about each team <a href="https://www.csesoc.unsw.edu.au/teams/about/">click here</a>.</p>
+            <p>Send in an email to csesoc@cse.unsw.edu.au. In your application, make sure you consider the following:<br>
+            Mention any experience you have that might help you with the position,<br>
+            Why you want to get involved in CSESoc,<br>
+            What you think the job entails, and<br>
+            What you would like to do if you got the role.<br>
+            <br>
+            Applications close <strong>11:59pm 21st November</strong>.</p>
+        </div>
+
+        <h6>24 October 2013</h6>
+        <div class="news-card news">
+            <h2>CSESoc Exec Team 2014</h2>
+            <p>The election results are in. Congratulations to the new executive team:
+            <ul>
+                <li><strong>Co-Presidents</strong> - Vincent Chi-Kit Wong &amp; Pierre Estephan</li>
+                <li><strong>Treasurer</strong> - Matthew David Moss</li>
+                <li><strong>Secretary</strong> - Caroline Cham</li>
+                <li><strong>Arc Delegate</strong> - Lavender Chan</li>
+            </ul></p>
+        </div>
+        <div class="news-card social">
+            <h2>Last Chance Soctail Tickets @ Trivia</h2>
+            <p>Today is your last chance to buy a soctail ticket! Bring $50 (or $80 and a friend) to seminar room from 6pm tonight to get your ticket for the biggest event of the year! (not including camp :P)</p>
+        </div>
+        <div class="news-card social">
+            <h2>Epic BBQ</h2>
+            <p>Be sure to come along to our final BBQ for 2013 next Tuesday - we've got some extra niceties planned to celebrate the end of the year.</p>
+            <p><ul>
+                <li><strong>Date:</strong> Tuesday 29th October - Week 13</li>
+                <li><strong>Time:</strong> 11:30am -12:30pm</li>
+                <li><strong>Location:</strong> Physics Lawn</li>
+            </ul></p>
+        </div>
+        <div class="news-card careers">
+            <h2>Optiver Roles</h2>
+            <p>Optiver are currently hiring Graduate Developers and Trading Systems Engineers for both full time and Internships. Great team environment, extensive training and development, casual working environment and the opportunity to make a real impact in your role. <a href="http://www.optiver.com/sydney/careersoptiver/grads/">Apply now.</a></p>
+        </div>
+        <div class="news-card news">
+            <h2>ENGSoc AGM</h2>
+            <p>The ENGSoc AGM is on next Tuesday, bright and early.</p>
+            <p><ul>
+                <li><strong>Date:</strong> Tuesday 29th October - Week 13</li>
+                <li><strong>Time:</strong> 8am</li>
+                <li><strong>Location:</strong> Level 5 Design Studio - Mechanical Engineering Building</li>
+            </ul></p>
+        </div>
+    </div>
+
+
+
+
+    <!-- FOOTER -->
+
+    <div class="footer-photo">
+        <div id="footer">
+            <span>
+                &copy; Copyright 2013 CSESoc
+            </span>
+        </div>
+    </div>
+
+
+    <!-- SCRIPTS -->
+
+    <script src="{% static "js/vendor/jquery.js" %}"></script>
+    <script src="{% static "js/foundation.min.js" %}"></script>
+
+    <script>
+    // this never changes so only check for it once
+    var navPos = $("#scroller-anchor").offset().top;
+    var navBarHeight = $(".scroller").height();
+    var photoHeightModifier;
+
+    function setPhoto() {
+        var name = "name";
+        var height = "height";
+        var photos =  [ {name: "balloons.jpg", height: 1/5},
+                        {name: "camp.jpg", height: 25/40},
+                        {name: "deloitte-swag.jpg", height:5/32},
+                        {name: "firstyear2013-01.jpg", height: 27/36},
+                        {name: "firstyear2013-02.jpg", height: 1/3},
+                        // {name: "logo.jpg", height: 1/2},
+                        {name: "csesoc.jpg", height: 5/7},
+                        {name: "luke.jpg", height: 2/3},
+                        {name: "party.jpg", height: 2/5},
+                        {name: "rainy-bbq.jpg", height: 1/3},
+                        {name: "sand.jpg", height: 2/3},
+                        {name: "seminar.jpg", height: 3/4},
+                        {name: "spongebob.jpg", height: 1/2},
+                        {name: "trivia.jpg", height: 3/5}
+                    ];
+        // var photo = photos[Math.floor(Math.random()*photos.length)];
+        var photo = photos[5];
+
+        // $(".photo").css("background-image", "url(img/"+photo[name]+")");
+        // $(".footer-photo").css("background-image", "url(img/"+photo[name]+")");
+
+        photoHeightModifier = photo[height];
+        // photoHeightModifier = 5/7;
+
+    }
+
+    function stickyNav(scrollTop) {
+        if (scrollTop>navPos  || $(".feature").css("display") == "none") {
+            $(".scroller").css("position","fixed");
+            $(".scroller").css("top", "0px");
+            $(".scroller").css("background-attachment", "scroll");
+            $("#nav-padding").show();
+        } else {
+            if (scrollTop<=navPos && $(".feature").css("display") != "none") {
+                $(".scroller").css("position", "relative");
+                $(".scroller").css("top", "");
+                $(".scroller").css("background-attachment", "fixed");
+                $("#nav-padding").hide();
+            }
+        }
+    }
+
+    function titleZoom(scrollTop) {
+        var fontSize;
+        var bgAlpha;
+        var photoPos;
+        var navBarPos;
+
+        var width = $(window).width();
+        // var photoHeight = 2 * width / 3;
+        var photoHeight = width * photoHeightModifier;
+
+        if (scrollTop <= 0 && $(".feature").css("display") != "none") {
+            // full header
+            fontSize = 72;
+            bgAlpha = 0.75;
+            photoPos = (photoHeight / 2) - navPos/2;
+            navBarPos = 2;
+        } else if (scrollTop >= navPos || $(".feature").css("display") == "none") {
+            // sticky navbar
+            fontSize = 18;
+            bgAlpha = 0;
+            photoPos = (photoHeight / 2) - navBarHeight/2;
+            navBarPos = 10;
+        } else {
+            // in between
+            // fontSize = -54/256 * scrollTop + 72; // linear
+            // y = (54/256^2)(x-256)^2 + 18 is a curve that has y-intercept 72 and is 18 at x=256 - i.e. has the desired endpoints
+            fontSize = Math.pow(scrollTop-navPos, 2)/(Math.pow(navPos, 2)/54) + 18; // parabolic
+            bgAlpha = -Math.pow(scrollTop, 2)/(Math.pow(navPos, 2)/0.75) + 0.75;
+            photoPos = (photoHeight / 2) - (-96/navPos * scrollTop + navPos/2);
+            navBarPos = 8/navPos * scrollTop + 2; // linear
+        }
+        
+        // $("#page-heading").css("font-size", fontSize.toString() + "pt");
+        $("#title").css("background-color", "rgba(255,255,255,"+bgAlpha.toString()+")");
+        $(".photo").css("background-position", "0 -"+photoPos.toString()+"px");
+        $("#navigation").css("padding-left", navBarPos.toString() + "rem");
+
+        $("#page-heading").animate({"font-size": fontSize.toString() + "pt"}, 2);
+        // $("#navigation").animate({"padding-left": navBarPos.toString() + "rem"}, 2);
+    }
+
+    function subtitleFade(scrollTop) {
+        var fadeLevel;
+        var height = parseInt($("#subtitle").css("padding-top")) / 2;
+
+        if (scrollTop <= 0 && $(".feature").css("display") != "none") {
+            // full header
+            fadeLevel = 1;
+        } else if (scrollTop >= height || $(".feature").css("display") == "none") {
+            // sticky navbar
+            fadeLevel = 0;
+        } else {
+            // in between
+            fadeLevel = -scrollTop/height + 1;
+        }
+        console.log(scrollTop, height, fadeLevel);
+        $("#subtitle").css("color", "rgba(0,0,0,"+fadeLevel.toString()+")");
+    }
+
+    setPhotoOffset = function() {
+        var width = $(window).width();
+        // var photoHeight = 2 * width / 3;
+        var photoHeight = width * photoHeightModifier;
+        var scrollTop = $(document).scrollTop();
+
+        var offset;
+        if (scrollTop <= 0 && $(".feature").css("display") != "none") {
+            offset = (photoHeight / 2) - navPos/2;
+        } else if (scrollTop >= navPos || $(".feature").css("display") == "none") {
+            offset = (photoHeight / 2) - navBarHeight/2;
+        } else {
+            offset = (photoHeight / 2) - (-96/navPos * scrollTop + navPos/2);
+        }
+        
+
+        console.log(offset);
+
+        $(".photo").css("background-position", "0 -"+offset.toString()+"px");
+    }
+
+    // every time scrolling happens, call the two functions
+    // but only check the scrolling position once
+    headerAnimate = function() {
+        var scrollTop = $(document).scrollTop();
+
+        if ($(window).height() < $(document).height()) {
+            titleZoom(scrollTop);
+            stickyNav(scrollTop);
+            subtitleFade(scrollTop);
+        }
+    };
+
+    headerSetup = function() {
+        setPhoto();
+
+        var scrollTop = $(document).scrollTop();
+
+        titleZoom(scrollTop);
+        stickyNav(scrollTop);
+
+        setPhotoOffset();
+
+        // Sets the max-height of the hamburger menu
+        var height = $(window).height() - $("#navigation").height();
+
+        $(".ham-menu").css("max-height", height.toString()+"px");
+    }
+
+    $(document).ready(headerSetup);
+
+    $(document).scroll(headerAnimate);
+
+    $(window).resize(headerAnimate);
+
+    $(window).resize(function() {
+        // Sets the max-height of the hamburger menu
+        var height = $(window).height() - $("#navigation").height();
+
+        $(".ham-menu").css("max-height", height.toString()+"px");
+
+    });
+    </script>
+
+
+
+    <script>
+    $(function(){
+
+        $("ul.dropdown li").hover(function(){
+        
+            $(this).addClass("hover");
+            $(".hover ul").css("visibility", "visible")
+        
+        }, function(){
+        
+            $(".hover ul").css("visibility", "hidden");
+            $(this).removeClass("hover");
+        
+        });
+
+
+
+        $("#hamburger").click(function(event) {
+            event.stopPropagation();
+
+            console.log(!$("#hamburger ul, #hamburger ul *").is(event.target));
+            console.log($("#hamburger ul").css("visibility"));
+
+            if (!$("#hamburger ul, #hamburger ul *").is(event.target) &&
+                    $("#hamburger ul").css("visibility") == "visible") {
+                
+                $("#hamburger ul").css("visibility", "hidden");
+            } else {
+                $("#hamburger ul").css("visibility", "visible");
+            }
+        });
+
+        $(":not(#hamburger)").click(function() {
+            if ($("#hamburger ul").css("visibility") == "visible") {
+                $("#hamburger ul").css("visibility", "hidden");
+            }
+        });
+
+        $(".ham-menu li").click(function() {
+            $(this).addClass("ham-active");
+            $(".ham-submenu").slideUp();
+            if ($(".ham-active .ham-submenu").css("display") == "none") {
+                $(".ham-active .ham-submenu").slideToggle();
+            }
+            $(this).removeClass("ham-active");
+        });
+
+    });
+    </script>
+
+    <script>
+        $(document).foundation();
+    </script>
+</body>
+</html>

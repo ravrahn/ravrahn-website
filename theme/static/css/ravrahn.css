@@ -146,20 +146,20 @@
     color: #000;
 }
 
-#blog {
+.blog {
     background-color: #de7643;
 }
 
-#apps {
+.apps {
     background-color: #4390de;
 }
 
-#portfolio {
+.portfolio {
     /*background-color: #52c443;*/
     background-color: #43aa76;
 }
 
-#about {
+.about {
     /*background-color: #de4352;*/
     background-color: #c44343;
 }
@@ -416,4 +416,140 @@ footer .container {
     margin: 0 auto -4rem;
     padding: 0 0 4rem;
     padding-top: 6rem;
+}
+
+
+
+
+
+
+
+
+/* PAGES */
+
+
+/* Apps */
+
+#apps h2 {
+    font-size: 1.5rem;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+#apps .apps-list {
+    list-style-type: none;
+    margin-left: 0;
+    overflow: hidden;
+}
+
+#apps .app {
+    padding: 1.5rem;
+    height: 12rem;
+}
+
+#apps .app:hover {
+    background-color: rgba(255,255,255,0.5);
+}
+
+#apps .app-img {
+    float: left;
+    width: 12rem;
+    height: 9rem;
+    outline: solid rgba(255,255,255,0.5) 1px;
+}
+
+#apps .app:hover .app-img {
+    outline: none;
+}
+
+#apps .app-text {
+    float: left;
+    width: calc(100% - 14rem);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    height: 9rem;
+    overflow: scroll;
+}
+
+#apps p {
+    color: black;
+}
+
+
+
+/* Portfolio */
+
+#portfolio .port-pretext {
+    height: 26rem;
+    padding-top: 3rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-bottom: 2rem;
+}
+
+#portfolio .port-small-container, .port-large-container {
+    position: relative;
+}
+
+#portfolio .port-small-container {
+    height: 32rem;
+    max-width: 18rem;
+}
+
+#portfolio .port-large-container {
+    height: 32rem;
+    width: 100%;
+}
+
+#portfolio iframe {
+    overflow: hidden;
+    border: none;
+}
+
+#portfolio .port-small-iframe {
+    height: 26rem;
+    width: 18rem;
+}
+
+#portfolio .port-large-iframe {
+    width: 100%;
+    height: 26rem;
+    max-width: 64rem;
+}
+
+#portfolio .large-iframe-overlay, .small-iframe-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#portfolio .large-iframe-overlay {
+    height: 26rem;
+    width: 64rem;
+}
+
+#portfolio .small-iframe-overlay {
+    height: 26rem;
+    width: 18rem;
+}
+
+#portfolio .port-desc {
+    padding: 1rem;
+}
+#portfolio .port-desc h2 {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 1.5rem;
+}
+
+#portfolio #content {
+    padding: 0;
+    margin-top: -0.5rem;
+}
+#portfolio #content-row {
+    margin: 0;
+    margin-right: 0px;
+    max-width: 64rem;
+    overflow: hidden;
+}
+#portfolio .content {
+    overflow: hidden;
 }

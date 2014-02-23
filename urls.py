@@ -32,13 +32,14 @@ urlpatterns += patterns('',
     # one out.
 
     url("^$", direct_to_template, {"template": "index.html"}, name="home"),
-    url("^apps/$", direct_to_template, {"template": "apps.html"}, name="apps"),
+    # url("^apps/$", direct_to_template, {"template": "apps.html"}, name="apps"),
     url("^portfolio/$", direct_to_template, {"template": "portfolio.html"}, name="portfolio"),
-    url("^about/$", direct_to_template, {"template": "about.html"}, name="about"),
+    # url("^about/$", direct_to_template, {"template": "about.html"}, name="about"),
     
     url("^apps/dots/$", direct_to_template, {"template": "dots.html"}, name="dots"),
 
-    url("^portfolio/mockups/", include("django.contrib.flatpages.urls")),
+    url("^portfolio/mockups/csesoc/$", direct_to_template, {"template": "mockups/csesoc/index.html"}, name="csesoc"),
+    url("^portfolio/mockups/mekong/$", direct_to_template, {"template": "mockups/mekong/index.html"}, name="mekong"),
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------

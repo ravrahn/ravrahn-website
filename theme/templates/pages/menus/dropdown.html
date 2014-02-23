@@ -11,8 +11,7 @@
     </li> -->
     {% endif %}
     {% if page.in_menu %}
-    <li class="root {% if page.is_current %}menu-selected{% endif %}"
-        id="{{ page.html_id }}">
+    <li class="root {% if page.is_current %}menu-selected{% endif %} {{ page.html_id }}">
         <a href="{{ page.get_absolute_url }}" class="menu-link {% if page.has_children_in_menu %}dropdown-toggle disabled" data-toggle="dropdown"{% else %}"{% endif %}">
             <div class="menu-item-container">
                 <span class="menu-item">{{ page.title }}</span>
@@ -30,8 +29,7 @@
     {% for page in page_branch %}
     {% if page.in_menu %}
     <li class="{% if page.has_children_in_menu %}dropdown-submenu{% endif %}
-               {% if page.is_current_or_ascendant %}active{% endif %}"
-        id="{{ page.html_id }}">
+               {% if page.is_current_or_ascendant %}active{% endif %} {{ page.html_id }}">
         <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
         {% if page.has_children_in_menu %}{% page_menu page %}{% endif %}
     </li>

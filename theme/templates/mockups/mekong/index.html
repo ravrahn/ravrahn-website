@@ -1,0 +1,740 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Mekong</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <style>
+    strong, b {
+        font-weight: bolder;
+    }
+
+    body {
+        background-color: #de7643;
+        color: #ffffff;
+        font-family: "museo-sans", "Helvetica Neue", "Helvetica", "Arial";
+        font-weight: 300;
+    }
+
+    a {
+        color: white;
+    }
+
+    a:hover {
+        color: rgba(255,255,255,0.8);
+    }
+
+    .content {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 80px;
+        margin-bottom: 80px;
+        float: center;
+        max-width: 1024px;
+        height: 100%;
+        background-color: rgba(255,255,255,0.3);
+        border-radius: 10px;
+        padding: 32px;
+    }
+
+    .login-textbox {
+        width: 16em;
+    }
+
+    .login-textbox-short {
+        width: 6.8em;
+    }
+
+    input[type="text"] {
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin: 6px;
+        font-family: "museo", "Helvetica Neue", "Helvetica", "Arial";
+        font-weight: 300;
+        font-size: 10pt;
+        color: #000000;
+        background-color: rgba(255,255,255,0.5);
+        border: none;
+    }
+
+    input[type="text"]:focus {
+        outline: 0;
+        background-color: rgba(255,255,255,0.75);
+    }
+
+    input[type="password"] {
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin: 6px;
+        font-family: "museo", "Helvetica Neue", "Helvetica", "Arial";
+        font-weight: 300;
+        font-size: 10pt;
+        background-color: rgba(255,255,255,0.5);
+        border: none;
+    }
+
+    input[type="password"]:focus {
+        outline: 0;
+        background-color: rgba(255,255,255,0.75);
+    }
+
+    input[type="number"] {
+        width: 2.2em;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin: 6px;
+        font-family: "museo", "Helvetica Neue", "Helvetica", "Arial";
+        font-weight: 300;
+        font-size: 10pt;
+        background-color: rgba(255,255,255,0.5);
+        border: none;
+    }
+
+    input[type="number"]:focus {
+        outline: 0;
+        background-color: rgba(255,255,255,0.75);
+    }
+
+    /* 'placeholder' for html5 textbox */
+    /* webkit */
+    ::-webkit-input-placeholder {
+        color: rgba(0,0,0,0.6);
+    }
+    /* firefox 19+ */
+    ::-moz-placeholder {
+        color: rgba(0,0,0,0.6);
+    }
+    /* ie */
+    :-ms-input-placeholder {
+        color: rgba(0,0,0,0.6);
+    }
+    /* presumably old firefox */
+    input:-moz-placeholder {
+        color: rgba(0,0,0,0.6);
+    }
+
+    input[type="submit"] {
+        border: none;
+        border-radius: 3px;
+        font-family: "museo", "Helvetica Neue", "Helvetica", "Arial";
+        font-weight: 300;
+        font-size: 10pt;
+        padding: 5px 10px;
+        margin: 6px;
+        background-color: rgba(255,255,255,0.75);
+        color: #000000;
+    }
+
+    input[type="submit"]:hover {
+        background-color: rgba(255,255,255,0.6);
+    }
+
+    input[type="submit"]:focus {
+        outline: 0;
+        background-color: rgba(255,255,255,0.8);
+    }
+
+    input[type="submit"]:active {
+        outline: 0;
+        background-color: #ffffff;
+    }
+
+    input[type="submit"]:disabled {
+        background-color: rgba(255,255,255,0.2);
+    }
+
+    .select {
+        color: rgba(0,0,0,0.6);
+    }
+
+    .select select {
+        font-family: "museo", "Helvetica Neue", "Helvetica", "Arial";
+        font-weight: 300;
+        color: rgba(0,0,0,0.6);
+        padding-right: 8px;
+        border: none;
+        background: url(arrow.png) no-repeat right transparent;
+        background-size: 5px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        font-size: 10pt;
+    }
+
+    select::-ms-expand {
+        display: none;
+    }
+
+    .select select:focus {
+        outline: 0;
+    }
+
+    .select select:active {
+        outline: 0;
+    }
+
+
+
+
+
+
+
+    /* BEGIN HEADER */
+
+    #navigation li:hover a {
+        color: white;
+    }
+
+    #navigation {
+        position: fixed;
+        top: 0;
+        left:0;
+        right:0;
+        z-index: 1;
+        background-color: rgba(255,255,255,0.3);
+        width: 100%;
+        height: 48px;
+        /*max-height: 50px;*/
+    }
+
+    #title-column {
+        width: 150px;
+        float: left;
+        margin-top: 8px;
+    }
+
+    #mekong-title {
+        margin-left: 32px;
+        font-family: "museo", "Helvetica Neue", "Helvetica", "Arial";
+        font-size: 18pt;
+        text-decoration: none;
+    }
+
+    #search-column {
+        width: auto;
+        float: left;
+        padding-bottom: 5px;
+    }
+
+    #search-box-container {
+        border-radius: 5px;
+        padding: 0;
+        margin-top: 8px;
+        font-size: 10pt;
+        color: #000000;
+        background-color: rgba(255,255,255,0.5);
+        border: none;
+    }
+
+    .search-box-container-focus {
+        outline: 0;
+        background-color: rgba(255,255,255,0.75) !important;
+    }
+
+    #search-box {
+        width: 50%;
+        min-width: 20em;
+        font-size: 12pt;
+        padding: 0;
+        margin: 0;
+        background: 0 !important;
+    }
+
+    #search-box:focus {
+        background: 0 !important;
+    }
+
+    #search-category {
+        margin-right: -0.25em
+    }
+
+    #go-button {
+        margin-left: 8px;
+        margin-right: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    #user-column {
+        width: 200px;
+        float: right;
+        margin-top: 14px;
+    }
+
+    #user-text {
+        margin-left: 32px;
+        font-size: 12pt;
+        text-decoration: none;
+    }
+
+
+    /* END HEADER */
+
+
+
+
+
+
+    /* BODY */
+
+    #mekong-content {
+        max-width: 1024px;
+    }
+
+    #notification {
+        overflow: hidden;
+        border-radius: 4px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 16px;
+        padding-right: 16px;
+        width: auto;
+        height: auto;
+        display: block;
+        background: rgba(255,255,255,0.4);
+        margin-bottom: 18px;
+    }
+
+    #featured-title {
+        font-family: "museo", "Helvetica Neue", "Helvetica", "Arial";
+        font-size: 16pt;
+        font-weight: 300;
+    }
+
+    #featured-books {
+        margin-top: 8px;
+        border-top: 1px solid rgba(255,255,255,0.5);
+        overflow: hidden;
+    }
+
+    #top-ten-title {
+        font-family: "museo", "Helvetica Neue", "Helvetica", "Arial";
+        font-size: 16pt;
+        font-weight: 300;
+    }
+
+    #top-ten-books {
+        margin-top: 8px;
+        border-top: 1px solid rgba(255,255,255,0.5);
+        overflow: hidden;
+    }
+
+    .login-title {
+        display: block;
+        font-family: "museo", "Helvetica Neue", "Helvetica", "Arial";
+        font-size: 18pt;
+        font-weight: 100;
+        text-align: center;
+        margin-bottom: 4px;
+    }
+
+    #login-content {
+        width: 550px;
+    }
+
+    .login-container {
+        vertical-align: top;
+        float: left;
+    }
+
+    .new-account-container {
+        border-left: solid 1px rgba(255,255,255,0.2);
+        padding-left: 5%;
+        vertical-align: top;
+        float: right;
+    }
+
+    #forgot-password-container {
+        width: 22em;
+    }
+
+
+    #search-content {
+        margin-top: 8px;
+        border-top: 1px solid rgba(255,255,255,0.5);
+        overflow: hidden;
+    }
+
+    .results-heading {
+        font-family: "museo", "Helvetica Neue", "Helvetica", "Arial";
+        font-size: 16pt;
+        font-weight: 300;
+    }
+
+    #query {
+        font-style: italic;
+    }
+
+    .book {
+        position: relative;
+        float: left;
+        margin: 16px;
+        width: 138px;
+        background-color: rgba(255,255,255,0.4);
+        border-radius: 3px;
+        color: #000;
+    }
+
+    .book:hover {
+        background-color: rgba(255,255,255,0.6);
+    }
+
+    .book-link {
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .book-img-container {
+        padding-left: 8px;
+        padding-top: 8px;
+        padding-bottom: 4px;
+        height: 204px;
+        width: 122px;
+        overflow: hidden;
+        border-radius: 3px;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .book-img {
+        border-radius: 3px;
+        width: 122px;
+        max-height: 200px;
+        margin: auto;
+    }
+
+    .book-title {
+        padding-left: 8px;
+        padding-right: 8px;
+        font-family: "museo", "Helvetica Neue", "Helvetica", "Arial";
+        font-size: 12pt;
+        font-weight: 300;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 112px;
+    }
+
+    .book-author {
+        padding-left: 8px;
+        padding-right: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 8pt;
+    }
+
+    .book-price {
+        padding-left: 8px;
+        padding-bottom: 4px;
+        font-size: 10pt;
+    }
+
+    .book-link-cart {
+        bottom: 72px;
+        right: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .book-price-cart {
+        padding-left: 8px;
+        font-size: 10pt;
+    }
+
+    .book-form {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    .book-quantity {
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-bottom: 10px;
+        font-size: 10pt;
+    }
+
+    #detail-image-container {
+        float: left;
+    }
+
+    #detail-image {
+        width: 256px;
+        border-radius: 5px;
+    }
+
+    #detail-text {
+        float: right;
+        max-width: 750px;
+    }
+
+    .detail-title {
+        font-size: 30pt;
+        font-weight: 200;
+        font-family: "museo", "Helvetica Neue", "Helvetica", "Arial";
+    }
+
+    .detail-authors {
+        font-size: 12pt;
+        font-weight: 700;
+    }
+
+    .detail-pub-date {
+        font-size: 12pt;
+    }
+
+    .detail-publisher {
+        font-style: italic;
+    }
+
+    .detail-price {
+        font-size: 20pt;
+    }
+
+    #detail-description {
+        font-weight: bolder;
+    }
+
+    #cart-button {
+        margin-left: 0;
+    }
+
+    #quantity-label {
+        font-family: "museo-sans", "Helvetica Neue", "Helvetica", "Arial";
+        font-size: 10pt;
+        margin-right: -0.25em;
+    }
+
+
+    .account-username {
+        font-family: "museo", "Helvetica Neue", "Helvetica", "Arial";
+        font-weight: 200;
+        font-size: 30pt;
+    }
+
+    #logout-button {
+        margin: 0px !important;
+    }
+
+
+
+    .account-detail-heading {
+        font-family: "museo", "Helvetica Neue", "Helvetica", "Arial";
+        font-weight: 200;
+        font-size: 22pt;
+    }
+
+    #checkout-button {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-top: 4px !important;
+        margin-bottom: 16px !important;
+    }
+
+    #cart-content {
+        margin-top: 8px;
+        overflow: hidden;
+    }
+
+    #orders-content {
+        margin-top: 8px;
+        overflow: hidden;
+    }
+
+    .cart-button {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 8px !important;
+        width: 58px;
+        font-size: 9pt !important;
+        padding: 5px !important;
+    }
+
+    #checkout-form-container {
+        float: left;
+    }
+
+    #cart-container {
+        border-left: solid 1px rgba(255,255,255,0.2);
+        padding-left: 16px;
+        margin-left: 16px;
+        float: left;
+    }
+    </style>
+
+    <!-- Typekit -->
+    <script type="text/javascript" src="//use.typekit.net/ghj5dwk.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+<body>
+    <div id="navigation">
+        <div id="title-column">
+            <a href="mekong.cgi" id="mekong-title">Mekong</a>
+        </div>
+        <div id="search-column">
+            <script>
+                function focusSearch(isOnFocus) {
+                    if (isOnFocus) {
+                        document.getElementById("search-box-container").className="search-box-container-focus";
+                    } else {
+                        document.getElementById("search-box-container").className="search-box-container";
+                    }
+                }
+                function selectElement() {
+                    var element = document.getElementById('category-dropdown');
+                    element.value = "all";
+                }
+                window.onload = selectElement;
+            </script>
+            <div id="search-box-container">
+                <form name="search" method="post" action="mekong.cgi?page=search" enctype="multipart/form-data">
+                    <div style="float: left;padding-top: 6px;padding-left: 12px;">
+                        <input placeholder="Search"
+                            type="text" name="search"
+                            id="search-box"
+                            value=""
+                            onFocus="focusSearch(true)"
+                            onBlur="focusSearch(false)" />
+                    </div>
+                    <div id="search-options-container" style="float: right;">
+                        <div class="select" style="float: left;padding-top: 6px;">
+                            <span id="search-category">Search</span> 
+                            <select id="category-dropdown" name="category">
+                                <option value="all">Everything</option>
+                                <option value="title">Titles</option>
+                                <option value="authors">Authors</option>
+                                <option value="isbn">ISBNs</option>
+                                <option value="productdescription">Blurbs</option>
+                            </select>
+                        </div>
+                        <div class="go-button" style="float: right;">
+                            <input class="button" id="go-button" type="submit" name="go" value="Go"/>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                    <div style="clear: both;"></div>
+                </form>
+            </div>
+        </div>
+        <div id="user-column">
+            <a href="mekong.cgi?page=login" id="user-text">Login or Register</a>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <div class="content" id="mekong-content" >
+
+        <span id="featured-title">Featured</span>
+        <div id="featured-books" >
+            <div class="book">
+                <a class="book-link" href="?page=book-detail&book=0307353133" ></a>
+                <div class="book-img-container" ><img class="book-img" src="http://ecx.images-amazon.com/images/I/51FSaZaVA3L.jpg" /></div>
+                <div class="book-title" >The 4-Hour Workweek: Escape 9-5, Live Anywhere, and Join the New Rich</div>
+                <div class="book-author" >Timothy Ferriss</div>
+                <div class="book-price" >$19.95</div>
+                <!-- rank: 3305 -->
+            </div>
+            <div class="book">
+                <a class="book-link" href="?page=book-detail&book=0374533881" ></a>
+                <div class="book-img-container" ><img class="book-img" src="http://ecx.images-amazon.com/images/I/41L-9kjfULL.jpg" /></div>
+                <div class="book-title" >What a Plant Knows: A Field Guide to the Senses</div>
+                <div class="book-author" >Daniel Chamovitz</div>
+                <div class="book-price" >$14.00</div>
+                <!-- rank: 8008 -->
+            </div>
+            <div class="book">
+                <a class="book-link" href="?page=book-detail&book=0762447346" ></a>
+                <div class="book-img-container" ><img class="book-img" src="http://ecx.images-amazon.com/images/I/51g-S4krS4L.jpg" /></div>
+                <div class="book-title" >1001 Secrets Every Birder Should Know: Tips and Trivia for the Backyard and Beyond</div>
+                <div class="book-author" >Sharon Stiteler</div>
+                <div class="book-price" >$20.00</div>
+                <!-- rank: 67667 -->
+            </div>
+            <div class="book">
+                <a class="book-link" href="?page=book-detail&book=0879237341" ></a>
+                <div class="book-img-container" ><img class="book-img" src="http://ecx.images-amazon.com/images/I/41PR0VaiUiL.jpg" /></div>
+                <div class="book-title" >Out of Mind</div>
+                <div class="book-author" >J. Bernlef</div>
+                <div class="book-price" >$17.95</div>
+                <!-- rank: 362871 -->
+            </div>
+            <div class="book">
+                <a class="book-link" href="?page=book-detail&book=0070779740" ></a>
+                <div class="book-img-container" ><img class="book-img" src="http://ecx.images-amazon.com/images/I/51KNrxkyzlL.jpg" /></div>
+                <div class="book-title" >The Big Book of Customer Service Training Games (Big Book Series)</div>
+                <div class="book-author" >Peggy Carlaw, Vasudha Deming</div>
+                <div class="book-price" >$25.00</div>
+                <!-- rank: 48293 -->
+            </div>
+            <div class="book">
+                <a class="book-link" href="?page=book-detail&book=1491214163" ></a>
+                <div class="book-img-container" ><img class="book-img" src="http://ecx.images-amazon.com/images/I/412CfZqObGL.jpg" /></div>
+                <div class="book-title" >Sam's New Adventure</div>
+                <div class="book-author" >Jay F. Cabanillas</div>
+                <div class="book-price" >$9.99</div>
+                <!-- rank: 2188106 -->
+            </div>
+
+        </div>
+        <span id="top-ten-title">Bestsellers</span>
+        <div id="top-ten-books" >
+            <div class="book">
+                <a class="book-link" href="?page=book-detail&book=1423146727" ></a>
+                <div class="book-img-container" ><img class="book-img" src="http://ecx.images-amazon.com/images/I/51EXULfiPYL.jpg" /></div>
+                <div class="book-title" >1. The House of Hades (Heroes of Olympus, Book 4)</div>
+                <div class="book-author" >Rick Riordan</div>
+                <div class="book-price" >$19.99</div>
+                <!-- rank: 1 -->
+            </div>
+            <div class="book">
+                <a class="book-link" href="?page=book-detail&book=1250038820" ></a>
+                <div class="book-img-container" ><img class="book-img" src="http://ecx.images-amazon.com/images/I/61XXt4dlD9L.jpg" /></div>
+                <div class="book-title" >2. Humans of New York</div>
+                <div class="book-author" >Brandon Stanton</div>
+                <div class="book-price" >$29.99</div>
+                <!-- rank: 2 -->
+            </div>
+            <div class="book">
+                <a class="book-link" href="?page=book-detail&book=006202406X" ></a>
+                <div class="book-img-container" ><img class="book-img" src="http://ecx.images-amazon.com/images/I/51KtoXm-FyL.jpg" /></div>
+                <div class="book-title" >3. Allegiant (Divergent Trilogy)</div>
+                <div class="book-author" >Veronica Roth</div>
+                <div class="book-price" >$19.99</div>
+                <!-- rank: 3 -->
+            </div>
+            <div class="book">
+                <a class="book-link" href="?page=book-detail&book=0805098542" ></a>
+                <div class="book-img-container" ><img class="book-img" src="http://ecx.images-amazon.com/images/I/41HfMNh90sL.jpg" /></div>
+                <div class="book-title" >5. Killing Jesus</div>
+                <div class="book-author" >Bill O'Reilly, Martin Dugard</div>
+                <div class="book-price" >$28.00</div>
+                <!-- rank: 5 -->
+            </div>
+            <div class="book">
+                <a class="book-link" href="?page=book-detail&book=0316322407" ></a>
+                <div class="book-img-container" ><img class="book-img" src="http://ecx.images-amazon.com/images/I/51nSmkd6tIL.jpg" /></div>
+                <div class="book-title" >6. I Am Malala: The Girl Who Stood Up for Education and Was Shot by the Taliban</div>
+                <div class="book-author" >Malala Yousafzai</div>
+                <div class="book-price" >$26.00</div>
+                <!-- rank: 6 -->
+            </div>
+            <div class="book">
+                <a class="book-link" href="?page=book-detail&book=0804161992" ></a>
+                <div class="book-img-container" ><img class="book-img" src="http://ecx.images-amazon.com/images/I/511WCQbALHL.jpg" /></div>
+                <div class="book-title" >7. Pokemon X & Pokemon Y: The Official Kalos Region Guidebook: The Official Pokemon Strategy Guide</div>
+                <div class="book-author" >Stephen Stratton</div>
+                <div class="book-price" >$19.99</div>
+                <!-- rank: 7 -->
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -60,7 +60,7 @@
 {% block extra_head %}{% endblock %}
 </head>
 
-<body id="{% block body_id %}body{% endblock %}" class="{% trans page.html_id %}-bg">
+<body id="{{ page.html_id }}" class="{% trans page.html_id %}-bg">
 
 <div id="navigation" role="navigation" class="{% trans page.html_id %}-bg">
     <div class="nav-large">

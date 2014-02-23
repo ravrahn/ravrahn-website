@@ -4,25 +4,57 @@
 {% block meta_title %}{% trans "Portfolio" %}{% endblock %}
 {% block title %}{% trans "Portfolio" %}{% endblock %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static "css/portfolio.css" %}">
-{% endblock %}
-
 {% block main %}
 
-<div class="port-small-container">
-    <iframe class="port-small-iframe" src="/blog/" scrolling="no" ></iframe>
-    <div class="small-iframe-overlay"></div>
+<div class="port-pretext">
+    here are some websites I made look like they look
+</div>
+
+
+<div class="port-large-container">
     <div class="port-desc"><h2><a href="http://csesoc.unsw.edu.au/">CSESoc</a></h2></div>
+    <iframe class="port-large-iframe" src="mockups/csesoc/" scrolling="no" ></iframe>
+    <div class="large-iframe-overlay"></div>
 </div>
 <div class="port-large-container">
-    <iframe class="port-large-iframe" src="/apps/dots/" scrolling="no" ></iframe>
-    <div class="large-iframe-overlay"></div>
     <div class="port-desc"><h2>Mekong</h2></div>
+    <iframe class="port-large-iframe" src="mockups/mekong/" scrolling="no" ></iframe>
+    <div class="large-iframe-overlay"></div>
 </div>
 
-{% endblock %}
+<div class="port-posttext">
+    so there you have it
+</div>
 
-{% block extra_content %}
-<div style="height: 24rem;"></div>
+<script>
+    $(window).scroll(function() {
+
+        if ($(window).height() < $(document).height() && $(document).scrollTop() + $(window).height() < $(document).height()) {
+            
+            var scrollTop = $(document).scrollTop();
+            var frames = $(".port-large-iframe, .port-small-iframe");
+            var startHeight = $(window).height() / 2;
+
+            for (i = 0; i < frames.length; i++) {
+                var frame = $(frames[i]);
+
+                var frameScroll;
+
+                if (frame.offset().top - scrollTop > startHeight) {
+                    frameScroll = 0;
+                } else {
+                    frameScroll = (scrollTop - frame.offset().top + startHeight) / (startHeight/333);
+                }
+
+                frame.contents().find("html, body").scrollTop(frameScroll);
+            }
+            
+
+        }
+    });
+
+    $(".port-pretext").css("min-height", $(window).height()/2.5);
+    $(".port-posttext").css("min-height", $(window).height()/2.5);
+</script>
+
 {% endblock %}
