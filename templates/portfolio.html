@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+
+{% block meta_title %}{% trans "Portfolio" %}{% endblock %}
+{% block title %}{% trans "Portfolio" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "css/portfolio.css" %}">
+{% endblock %}
+
+{% block main %}
+{% blocktrans %}
+
+well I designed the CSESoc website I guess, and this one
+
+{% endblocktrans %}
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "css/dots.css"%}" />
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static "js/dots.js" %}"></script>
+{% endblock %}
+
+{% block meta_title %}{% trans "Dots" %}{% endblock %}
+{% block title %}{% trans "Dots" %}{% endblock %}
+
+{% block main %}
+{% blocktrans %}
+<div id="monitor">
+    <input id="width" type="number" value="1920" min="1" onchange="updateResultsY()" >
+    <input id="height" type="number" value="1200" min="1" onchange="updateResultsX()" >
+    <span id="aspect-ratio">16:10</span>
+    <span id="dpi-container"><span id="dpi">94</span> dpi</span>
+    <span id="mon-diag">
+        <input id="diagonal" type="number" value="24" max="99" min="1" onchange="updateResults()" >
+        <span>"</span>
+    </span>
+
+    <span id="buttons">
+        <a class="res-button" href="#width=3840&amp;height=2160&amp;diag=55" >4K TV</a>
+        <a class="res-button" href="#width=1920&amp;height=1080&amp;diag=55" >1080p TV</a>
+        <a class="res-button" href="#width=2048&amp;height=1536&amp;diag=9.7" >iPad Air</a>
+        <a class="res-button" href="#width=1920&amp;height=1080&amp;diag=5" >HTC One</a>
+        <a class="res-button" href="#width=2560&amp;height=1440&amp;diag=27" >27" Monitor</a>
+        <a class="res-button" href="#width=1920&amp;height=1200&amp;diag=24" >24" Monitor</a>
+        <a class="res-button" href="#width=2880&amp;height=1800&amp;diag=15.5" >15" Macbook</a>
+        <a class="res-button" id="disclaimee" onclick="resThis()" >Your Monitor*</a>
+        <span id="disclaimer">*This feature's accuracy is limited.</span>
+    </span>
+</div>
+<span id="permalink"><a id="permalink-anchor" href="">Permalink to this monitor</a></span>
+
+<script>
+$("#disclaimee").hover(function(){
+    $("#disclaimer").css("display", "inline");
+},function() {
+    $("#disclaimer").css("display", "none");
+});
+</script>
+
+{% endblocktrans %}
+{% endblock %}

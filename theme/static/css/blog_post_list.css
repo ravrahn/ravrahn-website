@@ -1,0 +1,32 @@
+
+.blog-list-detail {
+    border: 0;
+}
+
+h2 {
+    font-family: "Roboto Slab", serif;
+    font-weight: 300;
+    font-size: 1.75rem;
+}
+
+.comment-num {
+    font-family: "Roboto", sans-serif;
+}
+
+ul.pagination li a {
+    border-radius: 0;
+    color: black;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+ul.pagination li {
+    margin: 0;
+}
+
+li.page-info {
+    margin-right: 1rem !important;
+}
+
+ul.pagination li a:hover {
+    background-color: rgba(255,255,255,0.5);
+}

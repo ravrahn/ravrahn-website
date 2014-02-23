@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+{% load pages_tags mezzanine_tags i18n future staticfiles %}
+
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+<meta name="description" content="{% block meta_description %}{% endblock %}">
+<title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} - {{ settings.SITE_TITLE }}{% endif %}</title>
+
+{% if page.html_id != None %}
+{% with fav="img/"|add:page.html_id|add:"_fav.ico" %}
+<link rel="shortcut icon" href="{% static fav %}">
+{% endwith %}
+{% else %}
+<link rel="shortcut icon" href="{% static "img/fav.ico" %}">
+{% endif %}
+
+<link href='http://fonts.googleapis.com/css?family=Roboto:100,300,400,500' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Inconsolata:400' rel='stylesheet' type='text/css'>
+
+{% ifinstalled mezzanine.blog %}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
+<link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+{% endifinstalled %}
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
+<link rel="stylesheet" href="{% static "css/normalize.css" %}">
+<link rel="stylesheet" href="{% static "css/foundation.css" %}">
+<link rel="stylesheet" href="{% static "css/ravrahn.css" %}">
+<link rel="stylesheet" href="{% static "css/hljs/hljs.css" %}">
+{% if LANGUAGE_BIDI %}
+<link rel="stylesheet" href="{% static "css/rtl.css" %}">
+{% endif %}
+{% ifinstalled cartridge.shop %}
+<link rel="stylesheet" href="{% static "css/cartridge.css" %}">
+{% if LANGUAGE_BIDI %}
+<link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
+{% endif %}
+{% endifinstalled %}
+{% block extra_css %}{% endblock %}
+{% endcompress %}
+
+{% compress js %}
+<script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
+<script src="{% static "js/vendor/modernizr.js" %}"></script>
+<script src="{% static "js/highlight.pack.js" %}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+{% block extra_js %}{% endblock %}
+{% endcompress %}
+<!--[if lt IE 9]>
+<script src="{% static "js/html5shiv.js" %}"></script>
+<script src="{% static "js/respond.min.js" %}"></script>
+<![endif]-->
+
+{% block extra_head %}{% endblock %}
+</head>
+
+<body id="{% block body_id %}body{% endblock %}" class="{% trans page.html_id %}-bg">
+
+<div id="navigation" role="navigation" class="{% trans page.html_id %}-bg">
+    <div class="nav-large">
+        {% if settings.SITE_TITLE %}
+        <div class="header-tab">
+            <a href="/" class="menu-link">
+                <div class="{% if page.html_id == None %}header-selected{% else %}header-unselected{% endif %} menu-item-container">
+                    <div class="header-logo-container">
+                        <div class="logo {% if page.html_id == None %}{% trans "home" %}{% else %}{% trans page.html_id %}{% endif %}-bg"></div>
+                    </div>
+                    <span class="header-title">{{ settings.SITE_TITLE }}</span>
+                    <div style="clear: both;"></div>
+                </div>
+            </a>
+        </div>
+        {% endif %}
+        {% if settings.SITE_TAGLINE %}<p class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</p>{% endif %}
+        <div class="menu-header">
+            <div class="large-12 medium-12">
+                {% page_menu "pages/menus/dropdown.html" %}
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <div class="nav-small">
+        {% if settings.SITE_TITLE %}
+        <div class="header-tab">
+            <a href="/" class="menu-link">
+                <div class="menu-item-container">
+                    <div class="header-logo-container">
+                        <div class="logo home-bg"></div>
+                    </div>
+                    <span class="header-title">{{ settings.SITE_TITLE }}</span>
+                    <div style="clear: both;"></div>
+                </div>
+            </a>
+        </div>
+        {% endif %}
+        <div id="hamburger" class="dropdown">
+            <div class="slice"></div>
+            <div class="slice"></div>
+            <div class="slice"></div>
+            {% page_menu "pages/menus/dropdown_ham.html" %}
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div id="content">
+        <div class="container">
+
+            {% nevercache %}
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endnevercache %}
+
+            <h1>{% block blog_title %}{% endblock %}</h1>
+
+        </div>
+
+        <div class="container">
+            <div class="row" id="content-row">
+                <div class="large-12 content">
+                    {% block main %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <p class="site-info text-center">
+                {% trans "&copy; Owen Cassidy 2014" %}
+                <span class="separator">|</span>
+                {% trans "Powered by" %}
+                <a href="http://mezzanine.jupo.org">Mezzanine</a>{% ifinstalled cartridge.shop %},
+                <a href="http://cartridge.jupo.org">Cartridge</a>{% endifinstalled %}
+                {% trans "and" %}
+                <a href="http://www.djangoproject.com">Django</a>
+                <span class="separator">|</span>
+                {% trans "Theme by Owen Cassidy with" %} <a target="_blank" href="http://foundation.zurb.com">Foundation</a>
+                {% ifinstalled mezzanine.mobile %}
+                <span class="separator">|</span>
+                <a href="{% url "set_device" "mobile" %}?next={{ request.path }}">{% trans "View Mobile Site" %}</a>
+                {% endifinstalled %}
+            </p>
+        </div>
+    </div>
+</footer>
+
+{% include "includes/footer_scripts.html" %}
+
+</body>
+</html>
