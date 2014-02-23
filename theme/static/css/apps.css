@@ -1,0 +1,43 @@
+h2 {
+    font-size: 1.5rem;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.apps-list {
+    list-style-type: none;
+    margin-left: 0;
+    overflow: hidden;
+}
+
+.app {
+    padding: 1.5rem;
+    height: 12rem;
+}
+
+.app:hover {
+    background-color: rgba(255,255,255,0.5);
+}
+
+.app-img {
+    float: left;
+    width: 12rem;
+    height: 9rem;
+    outline: solid rgba(255,255,255,0.5) 1px;
+}
+
+.app:hover .app-img {
+    outline: none;
+}
+
+.app-text {
+    float: left;
+    width: calc(100% - 14rem);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    height: 9rem;
+    overflow: scroll;
+}
+
+p {
+    color: black;
+}

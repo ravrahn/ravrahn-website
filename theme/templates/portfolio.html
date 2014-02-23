@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+
+{% block meta_title %}{% trans "Portfolio" %}{% endblock %}
+{% block title %}{% trans "Portfolio" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "css/portfolio.css" %}">
+{% endblock %}
+
+{% block main %}
+
+<div class="port-small-container">
+    <iframe class="port-small-iframe" src="/blog/" scrolling="no" ></iframe>
+    <div class="small-iframe-overlay"></div>
+    <div class="port-desc"><h2><a href="http://csesoc.unsw.edu.au/">CSESoc</a></h2></div>
+</div>
+<div class="port-large-container">
+    <iframe class="port-large-iframe" src="/apps/dots/" scrolling="no" ></iframe>
+    <div class="large-iframe-overlay"></div>
+    <div class="port-desc"><h2>Mekong</h2></div>
+</div>
+
+{% endblock %}
+
+{% block extra_content %}
+<div style="height: 24rem;"></div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+
+{% block meta_title %}{% trans "Apps" %}{% endblock %}
+{% block title %}{% trans "Apps" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "css/apps.css" %}">
+{% endblock %}
+
+{% block main %}
+
+<ul class="apps-list">
+    <a href="dots/">
+        <li class="app">
+            <img class="app-img" src="{% static "img/dots.png" %}" />
+            <div class="app-text">
+                <h2>Dots</h2>
+                <p>Dots is a monitor DPI (dots per inch) calculator. It uses Javascript and some simple (but tedious) maths to figure out a monitor's aspect ratio and DPI from the easiet-to-find values: width and height in pixels, and diagonal in inches.</p>
+            </div>
+            <div style="clear: both;"></div>
+        </li>
+    </a>
+</ul>
+
+{% endblock %}
