@@ -38,6 +38,8 @@ urlpatterns += patterns('',
     
     url("^apps/dots/$", direct_to_template, {"template": "dots.html"}, name="dots"),
 
+    url("^portfolio/mockups/", include("django.contrib.flatpages.urls")),
+
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------
     # This pattern gives us a normal ``Page`` object, so that your
