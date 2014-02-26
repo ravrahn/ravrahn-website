@@ -41,6 +41,8 @@ urlpatterns += patterns('',
     url("^portfolio/mockups/csesoc/$", direct_to_template, {"template": "mockups/csesoc/index.html"}, name="csesoc"),
     url("^portfolio/mockups/mekong/$", direct_to_template, {"template": "mockups/mekong/index.html"}, name="mekong"),
 
+    url("^secret/cat/page/$", direct_to_template, {"template": "cat.html"}, name="scp"),
+
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------
     # This pattern gives us a normal ``Page`` object, so that your

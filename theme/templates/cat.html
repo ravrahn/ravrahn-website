@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+
+{% block meta_title %}{% trans "Shhhhhh" %}{% endblock %}
+{% block title %}{% trans "Secret Cat Page" %}{% endblock %}
+
+{% block main %}
+
+<style>
+body {
+    background: url({% static "img/rex-bg.gif" %}) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#content-row div {
+    display: inline-block;
+    /*margin: 0.125rem;*/
+}
+
+#rex-vid00 {
+    width: 31.8125rem;
+}
+#rex-vid01 {
+    width: 31.8125rem;
+}
+#rex-vid02 {
+    width: 64rem;
+}
+#rex-vid03 {
+    width: 31.8125rem;
+}
+
+#rex-img00 {
+    width: 64rem;
+    height: 36rem;
+    background: url({% static "img/rex00.jpg" %}) no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#rex-img01 {
+    width: 31.375rem;
+    height: 17.648rem;
+    background: url({% static "img/rex01.jpg" %}) no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#rex-img02 {
+    width: 31.375rem;
+    height: 17.648rem;
+    background: url({% static "img/rex02.jpg" %}) no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#rex-img03 {
+    width: 64rem;
+    height: 36rem;
+    background: url({% static "img/rex03.jpg" %}) no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#content {
+    padding: 0;
+    margin-top: -0.5rem;
+    background-color: rgba(255,255,255,0);
+}
+#content-row {
+    margin: 0;
+    margin-right: 0px;
+    max-width: 64rem;
+    overflow: hidden;
+}
+</style>
+
+<div><video id="rex-vid00" src="{% static "vid/rex00.mp4" %}" autoplay muted loop >Video not working</video></div>
+<div><video id="rex-vid01" src="{% static "vid/rex01.mp4" %}" autoplay muted loop >Video not working</video></div>
+<div id="rex-img00"></div>
+<div><video id="rex-vid02" src="{% static "vid/rex02.mp4" %}" autoplay muted loop >Video not working</video></div>
+<div id="rex-img01"></div>
+<div><video id="rex-vid03" src="{% static "vid/rex03.mp4" %}" autoplay muted loop >Video not working</video></div>
+<div id="rex-img02"></div>
+<div id="rex-img03"></div>
+{% endblock %}
+
