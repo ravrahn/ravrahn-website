@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "css/chromophage.css"%}" />
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}
+
+{% block meta_title %}{% trans "Chromophage" %}{% endblock %}
+{% block title %}{% trans "Chromophage" %}{% endblock %}
+
+{% block main %}
+<span class="time">00:00:00</span>
+
+<script src="{% static "js/chromophage.js" %}"></script>
+{% endblock %}

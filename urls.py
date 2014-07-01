@@ -34,14 +34,16 @@ urlpatterns += patterns('',
     url("^$", direct_to_template, {"template": "index.html"}, name="home"),
     # url("^apps/$", direct_to_template, {"template": "apps.html"}, name="apps"),
     url("^portfolio/$", direct_to_template, {"template": "portfolio.html"}, name="portfolio"),
-    # url("^about/$", direct_to_template, {"template": "about.html"}, name="about"),
+    url("^about/$", direct_to_template, {"template": "about.html"}, name="about"),
     
     url("^apps/dots/$", direct_to_template, {"template": "dots.html"}, name="dots"),
+    url("^apps/chromophage/$", direct_to_template, {"template": "chromophage.html"}, name="chromophage"),
 
     url("^portfolio/mockups/csesoc/$", direct_to_template, {"template": "mockups/csesoc/index.html"}, name="csesoc"),
     url("^portfolio/mockups/mekong/$", direct_to_template, {"template": "mockups/mekong/index.html"}, name="mekong"),
 
     url("^secret/cat/page/$", direct_to_template, {"template": "cat.html"}, name="scp"),
+    url("^timetable/$", direct_to_template, {"template": "timetable.html"}, name="timetable"),
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------

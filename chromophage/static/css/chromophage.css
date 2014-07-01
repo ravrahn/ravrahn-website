@@ -1,0 +1,18 @@
+
+#content {
+	background-color: rgba(255,255,255,0);
+}
+
+.time {
+	color: white;
+	font-family: 'Roboto Condensed', Helvetiva, Arial, sans-serif;
+	text-align: center;
+	font-size: 5rem;
+	display: inline-block;
+	width: 100%;
+	font-weight: 400;
+	text-shadow: black 0 0 0.25rem;
+	position: fixed;
+	top: calc(50% - 2.5rem);
+	left: 0;
+}
