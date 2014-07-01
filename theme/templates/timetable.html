@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+
+{% block meta_title %}{% trans "14s2 Timetable" %}{% endblock %}
+{% block title %}{% trans "" %}{% endblock %}
+
+{% block main %}
+
+<style>
+#content {
+    padding: 0;
+    margin-top: -0.5rem;
+    background-color: rgba(255,255,255,0);
+}
+#content-row {
+    margin: 0;
+    margin-right: 0;
+    max-width: 64rem;
+    overflow: hidden;
+}
+
+.table-container {
+    position: relative;
+    width: 100%;
+    height: 64rem;
+}
+
+table.timetable {
+    width: 100%;
+    table-layout: fixed;
+    background:none;
+    border: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.timetable th {
+    background-color: white;
+}
+
+.timetable td {
+    height: 4.5em;
+    border-left: 1px solid rgba(0,0,0,0.25);
+    border-top: 1px solid rgba(0,0,0,0.25);
+}
+
+.timetable tr {
+    font-family: "Roboto Condensed";
+    font-weight: 400;
+}
+
+.timetable td.class {
+    background-color:#5099CC;
+    color: white;
+    text-align: right;
+}
+
+.timetable td.clash {
+    background-color:#DD5566;
+    color: #eeeeee;
+    text-align: center;
+}
+
+.timetable .hour {
+    width: 8%;     
+}
+
+.lower-timetable td {
+    background-color: rgba(255,255,255,1);
+}
+
+.upper-timetable td {
+    /*background-color: rgba(255,255,255,0.5);*/
+    border: 1px solid rgba(255,255,255,0.5) !important;
+}
+.upper-timetable td.class {
+    background: url({% static "img/stripes.png" %});
+    background-size: 8px 8px;
+    text-align: left;
+}
+
+.upper-timetable td:hover {
+    visibility: none;
+}
+
+table tr:nth-of-type(even) {
+    background: transparent;
+}
+
+</style>
+
+<div class="table-container">
+    <table class="table timetable lower-timetable">
+    <tbody>
+        <tr>
+            <th class="hour"></th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+        </tr>
+        <tr>
+            <td class="hour">12:00</td>
+            <td class="class">COMP6771 Tutorial</td>
+            <td class="class">COMP6771 Lecture</td>
+            <td class="class">COMP3421 Tutorial</td>
+            <td rowspan="2" class="class">COMP6771 Lecture</td>
+            <td class=""></td>
+        </tr>
+        <tr>
+            <td class="hour">13:00</td>
+            <td class=""></td>
+            <td class=""></td>
+            <td class=""></td>
+            <td class=""></td>
+        </tr>
+        <tr>
+            <td class="hour">14:00</td>
+            <td class=""></td>
+            <td class=""></td>
+            <td class="class">COMP3331 Lecture</td>
+            <td rowspan="2" class="class">COMP3511 Laboratory</td>
+            <td class=""></td>
+        </tr>
+        <tr>
+            <td class="hour">15:00</td>
+            <td class=""></td>
+            <td rowspan="3" class="class">COMP3421 Lecture</td>
+            <td rowspan="2" class="class">COMP3331 Laboratory</td>
+            <td class=""></td>
+        </tr>
+        <tr>
+            <td class="hour">16:00</td>
+            <td rowspan="2" class="class">COMP3331 Lecture</td>
+            <td class=""></td>
+            <td class=""></td>
+        </tr>
+        <tr>
+            <td class="hour">17:00</td>
+            <td class=""></td>
+            <td class=""></td>
+            <td class=""></td>
+        </tr>
+        <tr>
+            <td class="hour">18:00</td>
+            <td class=""></td>
+            <td rowspan="3" class="class">COMP3511 Lecture</td>
+            <td class=""></td>
+            <td class=""></td>
+            <td class=""></td>
+        </tr>
+        <tr>
+            <td class="hour">19:00</td>
+            <td class=""></td>
+            <td class=""></td>
+            <td class=""></td>
+            <td class=""></td>
+        </tr>
+        <tr>
+            <td class="hour">20:00</td>
+            <td class=""></td>
+            <td class=""></td>
+            <td class=""></td>
+            <td class=""></td>
+        </tr>
+    </tbody>
+    </table>
+
+    <table class="table timetable upper-timetable">
+    <tbody><tr><th class="hour"></th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th></tr><tr><td class="hour">12:00</td><td class=""></td><td class="class">COMP6771 Lecture</td><td class=""></td><td rowspan="2" class="class">COMP6771 Lecture</td><td class=""></td></tr><tr><td class="hour">13:00</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class="hour">14:00</td><td class="class">COMP6771 Tutorial</td><td class=""></td><td class="class">COMP3331 Lecture</td><td rowspan="2" class="class">COMP3331 Laboratory</td><td class=""></td></tr><tr><td class="hour">15:00</td><td class=""></td><td rowspan="3" class="class">COMP2041 Tutorial-Laboratory</td><td class=""></td><td class=""></td></tr><tr><td class="hour">16:00</td><td rowspan="2" class="class">COMP3331 Lecture</td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class="hour">17:00</td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class="hour">18:00</td><td class=""></td><td rowspan="3" class="class">COMP3511 Lecture</td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class="hour">19:00</td><td class=""></td><td rowspan="2" class="class">COMP3511 Laboratory</td><td class=""></td><td class=""></td></tr><tr><td class="hour">20:00</td><td class=""></td><td class=""></td><td class=""></td></tr></tbody></table>
+
+</div>
+
+{% endblock %}
