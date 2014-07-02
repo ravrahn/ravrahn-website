@@ -42,6 +42,7 @@
 <link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
 {% endif %}
 {% endifinstalled %}
+
 {% block extra_css %}{% endblock %}
 {% endcompress %}
 
@@ -57,23 +58,32 @@
 <script src="{% static "js/respond.min.js" %}"></script>
 <![endif]-->
 
+<!-- Polymer -->
+<script src="{% static "bower_components/platform/platform.js" %}"></script>
+<link rel="import" href="{% static "bower_components/paper-shadow/paper-shadow.html" %}">
+<link rel="import" href="{% static "bower_components/paper-ripple/paper-ripple.html" %}">
+<link rel="import" href="{% static "bower_components/paper-item/paper-item.html" %}">
+{% block extra_polymer %}{% endblock %}
+
 {% block extra_head %}{% endblock %}
 </head>
 
 <body id="{{ page.html_id }}" class="{% trans page.html_id %}-bg">
 
-<div id="navigation" role="navigation" class="{% trans page.html_id %}-bg">
+<div id="navigation" role="navigation" class="{% trans page.html_id %}-bg paper-shadow-bottom paper-shadow-bottom-z-2">
     <div class="nav-large">
         {% if settings.SITE_TITLE %}
         <div class="header-tab">
             <a href="/" class="menu-link">
-                <div class="{% if page.html_id == None %}header-selected{% else %}header-unselected{% endif %} menu-item-container">
-                    <div class="header-logo-container">
-                        <div class="logo {% if page.html_id == None %}{% trans "home" %}{% else %}{% trans page.html_id %}{% endif %}-bg"></div>
-                    </div>
+                <span class="{% if page.html_id == None %}header-selected{% else %}header-unselected{% endif %} menu-item-container">
+                    <paper-ripple class="header-ripple" opacityDecayVelocity="1.6" fit></paper-ripple>
+
+                    <span class="header-logo-container">
+                        <span class="logo {% if page.html_id == None %}{% trans "home" %}{% else %}{% trans page.html_id %}{% endif %}-bg"></span>
+                    </span>
                     <span class="header-title">{{ settings.SITE_TITLE }}</span>
-                    <div style="clear: both;"></div>
-                </div>
+                    <span style="clear: both; display: block;"></span>
+                </span>
             </a>
         </div>
         {% endif %}
@@ -137,6 +147,9 @@
                 </div>
             </div>
         </div>
+        {% block content_shadow %}
+        <paper-shadow z="1"></paper-shadow>
+        {% endblock %}
     </div>
 </div>
 

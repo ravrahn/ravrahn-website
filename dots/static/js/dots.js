@@ -150,9 +150,9 @@ function dpi(width, height, diagonal) {
 function createGrid(width, height, density) {
     var grid = "";
 
-    var row = "<div>";
+    var row = "<div class=\"grid grid-x\">";
     for (var i=0; i<width; i++) {
-        row += "<div></div>";
+        row += "<div class=\"grid grid-y\"></div>";
     }
     row += "</div>";
 
@@ -209,7 +209,7 @@ function changeMonitor(width, height, scale, density) {
     $("#mon-diag").css("-ms-transform", "rotate(" + transformAngle(width, height).toString() + "rad)");
     $("#mon-diag").css("transform", "rotate(" + transformAngle(width, height).toString() + "rad)");
 
-    $("#monitor div").remove();
+    $("#monitor div.grid").remove();
 
     var gridAmountWide = Math.floor(density / 6);
 
@@ -222,8 +222,8 @@ function changeMonitor(width, height, scale, density) {
 
     $("#monitor").append(createGrid(gridAmountWide, Math.ceil(height/gridSize)));
 
-    $("#monitor div:not(#monitor div div)").css("height", gridSize.toString() + "px");
-    $("#monitor div div").css("width", gridSize.toString() + "px");
+    $("#monitor div.grid-x").css("height", gridSize.toString() + "px");
+    $("#monitor div.grid-y").css("width", gridSize.toString() + "px");
 }
 
 // Use the above functions to update the page with the new results

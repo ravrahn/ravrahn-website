@@ -25,14 +25,14 @@ input[type="number"]:focus {
 	position: relative;
 }
 
-#monitor div {
+#monitor div.grid-x {
 	width: 100%;
 	height: 1em;
 	border-bottom: solid 1px rgba(255,255,255,0.25);
 	float: left;
 }
 
-#monitor div div {
+#monitor div.grid-y {
 	height: 100% !important;
 	width: 1em;
 	border-right: solid 1px rgba(255,255,255,0.25);
@@ -110,22 +110,31 @@ input[type="number"]:focus {
 
 #buttons {
 	position: absolute;
-	bottom: 1em;
+	bottom: 0.5em;
 	right: 1em;
-	height: 2em;
 }
 
 .res-button {
+	font-size: 0.9em;
+	position: relative;
+	display: block;
+	float: left;
 	background-color: rgba(255,255,255,0.5);
 	padding: 0.5em;
-	margin-left: 0.25rem;
+	margin-left: 0.25em;
 	cursor: pointer;
 	font-family: "Roboto Condensed", sans-serif;
 	color: black;
+	border-radius: 0.125em;
+	width: 7em;
 }
 
 .res-button:hover {
 	background-color: rgba(255,255,255,0.75);
+	color: black;
+}
+
+.res-ripple {
 	color: black;
 }
 

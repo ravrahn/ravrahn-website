@@ -9,6 +9,10 @@
 <script src="{% static "js/dots.js" %}"></script>
 {% endblock %}
 
+{% block extra_polymer %}
+<!-- <link rel="import" href="{% static "bower_components/paper-button/paper-button.html" %}"> -->
+{% endblock %}
+
 {% block meta_title %}{% trans "Dots" %}{% endblock %}
 {% block title %}{% trans "Dots" %}{% endblock %}
 
@@ -24,22 +28,47 @@
         <span>"</span>
     </span>
 
-    <span id="buttons">
-        <a class="res-button" href="#width=3840&amp;height=2160&amp;diag=55" >4K TV</a>
-        <a class="res-button" href="#width=1920&amp;height=1080&amp;diag=55" >1080p TV</a>
-        <a class="res-button" href="#width=2048&amp;height=1536&amp;diag=9.7" >iPad Air</a>
-        <a class="res-button" href="#width=1920&amp;height=1080&amp;diag=5" >HTC One</a>
-        <a class="res-button" href="#width=2560&amp;height=1440&amp;diag=27" >27" Monitor</a>
-        <a class="res-button" href="#width=1920&amp;height=1200&amp;diag=24" >24" Monitor</a>
-        <a class="res-button" href="#width=2880&amp;height=1800&amp;diag=15.5" >15" Macbook</a>
-        <a class="res-button" id="disclaimee" onclick="resThis()" >Your Monitor*</a>
-        <span id="disclaimer">*This feature's accuracy is limited.</span>
-    </span>
+    <div id="buttons">
+        <a class="res-button " href="#width=2048&amp;height=1536&amp;diag=9.7" >
+            iPad Air
+            <paper-ripple class="res-ripple" fit></paper-ripple>
+        </a>
+        <a class="res-button" href="#width=3840&amp;height=2160&amp;diag=55" >
+            4K TV
+            <paper-ripple class="res-ripple" fit></paper-ripple>
+        </a>
+        <a class="res-button" href="#width=1920&amp;height=1080&amp;diag=55" >
+            1080p TV
+            <paper-ripple class="res-ripple" fit></paper-ripple>
+        </a>
+        <a class="res-button" href="#width=1920&amp;height=1080&amp;diag=5" >
+            HTC One
+            <paper-ripple class="res-ripple" fit></paper-ripple>
+        </a>
+        <a class="res-button" href="#width=2560&amp;height=1440&amp;diag=27" >
+            27" Monitor
+            <paper-ripple class="res-ripple" fit></paper-ripple>
+        </a>
+        <a class="res-button" href="#width=1920&amp;height=1200&amp;diag=24" >
+            24" Monitor
+            <paper-ripple class="res-ripple" fit></paper-ripple>
+        </a>
+        <a class="res-button" href="#width=2880&amp;height=1800&amp;diag=15.5" >
+            15" Macbook
+            <paper-ripple class="res-ripple" fit></paper-ripple>
+        </a>
+        <a class="res-button" id="disclaimed" onclick="resThis()" >
+            Your Monitor*
+            <paper-ripple class="res-ripple" fit></paper-ripple>
+        </a>
+
+        <span id="disclaimer">*This is an estimate.</span>
+    </div>
 </div>
 <span id="permalink"><a id="permalink-anchor" href="">Permalink to this monitor</a></span>
 
 <script>
-$("#disclaimee").hover(function(){
+$("#disclaimed").hover(function(){
     $("#disclaimer").css("display", "inline");
 },function() {
     $("#disclaimer").css("display", "none");
