@@ -23,6 +23,7 @@ input[type="number"]:focus {
 #monitor {
 	overflow: hidden;
 	position: relative;
+	border-radius: 0.25em;
 }
 
 #grid {
