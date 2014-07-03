@@ -19,14 +19,13 @@
 {% block main %}
 {% blocktrans %}
 <div id="monitor">
+    <svg id="grid" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"/>
     <input id="width" type="number" value="1920" min="1" onchange="updateResultsY()" >
     <input id="height" type="number" value="1200" min="1" onchange="updateResultsX()" >
     <span id="aspect-ratio">16:10</span>
     <span id="dpi-container"><span id="dpi">94</span> dpi</span>
-    <span id="mon-diag">
-        <input id="diagonal" type="number" value="24" max="99" min="1" onchange="updateResults()" >
-        <span>"</span>
-    </span>
+    
+    <input id="diagonal" type="number" value="24" max="200" min="1" onchange="updateResults()" >
 
     <div id="buttons">
         <a class="res-button " href="#width=2048&amp;height=1536&amp;diag=9.7" >

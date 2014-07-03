@@ -147,20 +147,40 @@ function dpi(width, height, diagonal) {
 
 // Creates the background grid of divs
 // that visualise the density
-function createGrid(width, height, density) {
-    var grid = "";
+function createGrid(width, height, gridSize) {
+    var grid = $("#grid");
+    grid.empty();
 
-    var row = "<div class=\"grid grid-x\">";
-    for (var i=0; i<width; i++) {
-        row += "<div class=\"grid grid-y\"></div>";
+    grid = document.getElementById("grid");
+
+    var vertLinesD = "";
+    for (var x=0; x<width; x += gridSize) {
+        vertLinesD += "M " + x + ",0 ";
+        vertLinesD += "L " + x + "," + height + " ";
     }
-    row += "</div>";
 
-    for (var j=0; j<height+5; j++) {
-        grid += row;
+    var vertPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    vertPath.setAttributeNS(null, "d", vertLinesD);
+
+    grid.appendChild(vertPath);
+
+    var horLinesD = "";
+    for (var y=0; y<height; y += gridSize) {
+        horLinesD += "M 0," + y + " ";
+        horLinesD += "L " + width + "," + y + " ";
     }
 
-    return grid;
+    var horPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    horPath.setAttributeNS(null, "d", horLinesD);
+
+    grid.appendChild(horPath);
+
+    var diagD = "M 0,0 L " + width + "," + height;
+    var diagPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    diagPath.setAttributeNS(null, "d", diagD);
+    diagPath.setAttributeNS(null, "class", "mon-diag");
+
+    grid.appendChild(diagPath);
 }
 
 // Find the angle to rotate the diagonal line of the screen by
@@ -197,33 +217,36 @@ function changeMonitor(width, height, scale, density) {
         height = 10;
     }
 
-    $("#monitor").css("width", width.toString() + "px");
-    $("#monitor").css("height", height.toString() + "px");
+    if (width === $("#monitor").width()) {
+        // animate if width has not changed
+        // (ie. window was not resized)
+        $("#monitor").animate({ "height": height.toString() + "px" }, 200);
+    } else {
+        console.log("dammit");
+        $("#monitor").css("width", width.toString() + "px");
+        $("#monitor").css("height", height.toString() + "px");
+    }
 
     diagonal = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
 
-    $("#mon-diag").css("width", diagonal.toString() + "px");
-    $("#mon-diag").css("-webkit-transform", "rotate(" + transformAngle(width, height).toString() + "rad)");
-    $("#mon-diag").css("-moz-transform", "rotate(" + transformAngle(width, height).toString() + "rad)");
-    $("#mon-diag").css("-o-transform", "rotate(" + transformAngle(width, height).toString() + "rad)");
-    $("#mon-diag").css("-ms-transform", "rotate(" + transformAngle(width, height).toString() + "rad)");
-    $("#mon-diag").css("transform", "rotate(" + transformAngle(width, height).toString() + "rad)");
+    $("#diagonal").css("width", diagonal.toString() + "px");
+    $("#diagonal").css("-webkit-transform", "rotate(" + transformAngle(width, height).toString() + "rad)");
+    $("#diagonal").css("-moz-transform", "rotate(" + transformAngle(width, height).toString() + "rad)");
+    $("#diagonal").css("-o-transform", "rotate(" + transformAngle(width, height).toString() + "rad)");
+    $("#diagonal").css("-ms-transform", "rotate(" + transformAngle(width, height).toString() + "rad)");
+    $("#diagonal").css("transform", "rotate(" + transformAngle(width, height).toString() + "rad)");
 
-    $("#monitor div.grid").remove();
+    // the amount of grid tiles across
+    var gridAmountWide = Math.floor(density / 8);
 
-    var gridAmountWide = Math.floor(density / 6);
-
+    // the size of each grid tile
     var gridSize = scale / gridAmountWide;
 
     if (gridSize < 1) {
         gridSize = 1;
-        gridAmountWide = scale;
     }
 
-    $("#monitor").append(createGrid(gridAmountWide, Math.ceil(height/gridSize)));
-
-    $("#monitor div.grid-x").css("height", gridSize.toString() + "px");
-    $("#monitor div.grid-y").css("width", gridSize.toString() + "px");
+    createGrid(width, height, gridSize);
 }
 
 // Use the above functions to update the page with the new results
@@ -352,4 +375,4 @@ $(document).ready(function() {
     changeFontSizes();
 });
 
-$(window).resize(changeFontSizes);
+$(window).resize(changeFontSizes); 
