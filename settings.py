@@ -71,6 +71,8 @@ from __future__ import absolute_import, unicode_literals
 #     ),
 # )
 
+SECRET_KEY = 'z1%0cgeyak+_2nxzzs5k)fr4ffbxfi*42dc0khi@g*n_eo!p0y'
+
 # Setting to turn on featured images for blog posts. Defaults to False.
 #
 # BLOG_USE_FEATURED_IMAGE = True
