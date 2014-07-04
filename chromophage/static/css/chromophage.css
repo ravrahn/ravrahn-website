@@ -13,6 +13,8 @@
 	font-weight: 400;
 	text-shadow: black 0 0 0.25rem;
 	position: fixed;
-	top: calc(50% - 2.5rem);
+	/* halfway down, less 2rem to achieve visual centering */
+	/* with the hover header */
+	top: calc(50% - 2.5rem - 2rem);
 	left: 0;
 }

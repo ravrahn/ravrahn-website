@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-hover-header.html" %}
 {% load i18n staticfiles %}
 
 {% block extra_css %}
@@ -29,7 +29,15 @@
 
     <div id="buttons">
         <a class="res-button " href="#width=2048&amp;height=1536&amp;diag=9.7" >
-            iPad Air
+            iPad
+            <paper-ripple class="res-ripple" fit></paper-ripple>
+        </a>
+        <a class="res-button " href="#width=1136&amp;height=640&amp;diag=4" >
+            iPhone 5
+            <paper-ripple class="res-ripple" fit></paper-ripple>
+        </a>
+        <a class="res-button" href="#width=1920&amp;height=1080&amp;diag=5" >
+            HTC One
             <paper-ripple class="res-ripple" fit></paper-ripple>
         </a>
         <a class="res-button" href="#width=3840&amp;height=2160&amp;diag=55" >
@@ -40,10 +48,6 @@
             1080p TV
             <paper-ripple class="res-ripple" fit></paper-ripple>
         </a>
-        <a class="res-button" href="#width=1920&amp;height=1080&amp;diag=5" >
-            HTC One
-            <paper-ripple class="res-ripple" fit></paper-ripple>
-        </a>
         <a class="res-button" href="#width=2560&amp;height=1440&amp;diag=27" >
             27" Monitor
             <paper-ripple class="res-ripple" fit></paper-ripple>
@@ -52,8 +56,12 @@
             24" Monitor
             <paper-ripple class="res-ripple" fit></paper-ripple>
         </a>
-        <a class="res-button" href="#width=2880&amp;height=1800&amp;diag=15.5" >
+        <a class="res-button" href="#width=2880&amp;height=1800&amp;diag=15.4" >
             15" Macbook
+            <paper-ripple class="res-ripple" fit></paper-ripple>
+        </a>
+        <a class="res-button" href="#width=2560&amp;height=1600&amp;diag=13.3" >
+            13" Macbook
             <paper-ripple class="res-ripple" fit></paper-ripple>
         </a>
         <a class="res-button" id="disclaimed" onclick="resThis()" >

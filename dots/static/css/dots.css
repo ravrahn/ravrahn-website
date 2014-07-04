@@ -91,18 +91,20 @@ input[type="number"]:focus {
 
 #buttons {
 	position: absolute;
-	bottom: 0.5em;
+	top: 5.5em;
 	right: 1em;
+	width: 7em;
 }
 
 .res-button {
 	font-size: 0.9em;
 	position: relative;
 	display: block;
-	float: left;
+	float: right;
+	text-align: right;
 	background-color: rgba(255,255,255,0.5);
 	padding: 0.5em;
-	margin-left: 0.25em;
+	margin-bottom: 0.25em;
 	cursor: pointer;
 	font-family: "Roboto Condensed", sans-serif;
 	color: black;
@@ -125,7 +127,10 @@ input[type="number"]:focus {
 	font-weight: 300;
 	position: absolute;
 	right: 0;
-	top: -2em;
+	bottom: -1.25em;
+	white-space: nowrap;
+	overflow: visible;
+	text-align: right;
 }
 
 #permalink {
