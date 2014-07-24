@@ -528,70 +528,40 @@ footer .container {
 
 /* Portfolio */
 
-#portfolio .port-pretext {
-    height: 26rem;
-    padding-top: 3rem;
+#portfolio h2.port-title {
+    font-size: 1.75rem;
+    font-family: "Roboto Condensed";
     padding-left: 4rem;
     padding-right: 4rem;
-    padding-bottom: 2rem;
+    font-weight: 400;
 }
 
-#portfolio .port-small-container, .port-large-container {
-    position: relative;
-}
-
-#portfolio .port-small-container {
-    height: 32rem;
-    max-width: 18rem;
-}
-
-#portfolio .port-large-container {
-    height: 32rem;
-    width: 100%;
-}
-
-#portfolio iframe {
-    overflow: hidden;
-    border: none;
-}
-
-#portfolio .port-small-iframe {
-    height: 26rem;
-    width: 18rem;
-}
-
-#portfolio .port-large-iframe {
-    width: 100%;
-    height: 26rem;
-    max-width: 64rem;
-}
-
-#portfolio .large-iframe-overlay, .small-iframe-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-
-#portfolio .large-iframe-overlay {
-    height: 26rem;
-    width: 64rem;
-}
-
-#portfolio .small-iframe-overlay {
-    height: 26rem;
-    width: 18rem;
-}
-
-#portfolio .port-desc {
-    padding: 1rem;
-}
-#portfolio .port-desc h2 {
-    font-family: "Roboto Condensed", sans-serif;
+#portfolio h3.port-title {
     font-size: 1.5rem;
+    font-family: "Roboto Condensed";
+    font-style: italic;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+#portfolio .port-text {
+    padding-left: 4rem;
+    padding-right: 4rem;
+    margin-bottom: 0.75rem;
+}
+
+#portfolio .port-media {
+    margin-bottom: 0.75rem;
+}
+
+#portfolio .port-seperator {
+    height: 1.875rem;
+    width: 100%;
 }
 
 #portfolio #content {
-    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
     margin-top: -0.5rem;
 }
 #portfolio #content-row {

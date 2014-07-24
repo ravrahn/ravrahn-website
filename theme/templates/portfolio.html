@@ -6,14 +6,37 @@
 
 {% block main %}
 
-<div class="port-pretext">
-    here are some websites I made look like they look
-</div>
+<h2 class="port-title">Websites</h2>
+
+<h3 class="port-title">Mekong</h3>
+
+<a href="/portfolio/mekong/"><img class="port-media" src="{% static "img/mekong.png" %}"></a>
+
+<p class="port-text">
+    In late 2013, I was given an assignment to create a simple book shopping website using Perl or Python CGI. I took this as a design exercise as well as a computing assignment, and wrote every line of CSS from scratch. This was the first website I properly designed. I had created a primitive version of ravrahn.com based on Wordpress, but I had no real experience with web design and learnt most of the CSS I used as I wrote it.
+</p>
+<p class="port-text">
+    All of the code, the assignment spec, and more detail about my solution, are available on <a href="https://github.com/ravrahn/mekong">the project's Github repo</a>. A fully functional live version is available <a href="/portfolio/mekong/">here</a>.
+</p>
+
+<div class="port-seperator"></div>
+
+<h3 class="port-title">CSESoc</h3>
+
+<a href="https://csesoc.unsw.edu.au/"><img class="port-media" src="{% static "img/csesoc.png" %}"><!--<video class="port-media" src="{% static "vid/csesoc-scrolling.mp4" %}">--></a>
+
+<p class="port-text">
+    In early 2014, I volunteered to redesign the website of CSESoc, my university's computer science society. It was being rewritten from the ground up, with a Mezzanine and Django backend, and they wanted a visual refresh. This was my first time writing Javascript.
+</p>
+<p class="port-text">
+    Given that CSESoc is based around computing, I wanted the CSESoc website to look professional, and dynamic. The header, rather than transitioning from one state to another after a point, shifts continuously as you scroll - this is an effect I really like, but I've never seen it done before.
+</p>
 
 
-<div class="port-large-container">
+<!-- <div class="port-large-container">
     <div class="port-desc"><h2><a href="http://csesoc.unsw.edu.au/">CSESoc</a></h2></div>
-    <iframe class="port-large-iframe" src="mockups/csesoc/" scrolling="no" ></iframe>
+    <!-- <iframe class="port-large-iframe" src="mockups/csesoc/" scrolling="no" ></iframe> --
+    <video class="port-large-iframe" src="{% static "vid/csesoc-scrolling.mp4" %}" autoplay loop muted ></video>
     <div class="large-iframe-overlay"></div>
 </div>
 <div class="port-large-container">
@@ -55,6 +78,6 @@
 
     $(".port-pretext").css("min-height", $(window).height()/2.5);
     $(".port-posttext").css("min-height", $(window).height()/2.5);
-</script>
+</script> -->
 
 {% endblock %}
